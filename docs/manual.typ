@@ -10,11 +10,11 @@
 // #let date = datetime(year: ..., month: ..., day: ...)
 
 #show: project.with(
-  title: "Template",
+  title: "TGM HIT diploma thesis template",
   // subtitle: "...",
   authors: package-meta.authors.map(a => a.split("<").at(0).trim()),
   abstract: [
-    A template for typst packages
+    A diploma thesis template for students of the HIT department at TGM Wien.
   ],
   url: package-meta.repository,
   version: package-meta.version,
@@ -26,22 +26,16 @@
 
 = Introduction
 
-This is a template for typst packages. It provides the #ref-fn("template.id()") function:
-
-#{
-  let lib = raw(block: true, lang: "typ", read("/src/lib.typ").trim())
-  lib = crudo.slice(lib, 4)
-  lib
-}
+TODO
 
 = Module reference
 
-== `template`
+== `tgm-hit-thesis`
 
 #{
   let module = tidy.parse-module(
     read("/src/lib.typ"),
-    label-prefix: "template.",
+    // label-prefix: "tgm-hit-thesis.",
     scope: scope,
   )
   tidy.show-module(
