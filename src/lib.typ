@@ -1,6 +1,5 @@
-#import "@preview/linguify:0.4.0": *
-
 #import "assets.typ"
+#import "l10n.typ"
 
 #let _title = state("thesis-title")
 #let _authors = state("thesis-authors")
@@ -26,11 +25,11 @@
 
   _title.update(title)
   _authors.update(authors)
-  set-database(toml("lang.toml"))
+  l10n.set-database()
 
   set heading(outlined: false)
-  show heading: set heading(supplement: linguify("section"))
-  show heading.where(level: 1): set heading(supplement: linguify("chapter"))
+  show heading: set heading(supplement: l10n.section)
+  show heading.where(level: 1): set heading(supplement: l10n.chapter)
   show heading.where(level: 1): it => {
     set text(1.3em)
     pagebreak()
@@ -82,7 +81,7 @@
       logo
       v(0.5em)
     }
-    text(1.44em, weight: "bold")[#linguify("thesis")]
+    text(1.44em, weight: "bold")[#l10n.thesis]
     v(-0.5em)
     text(2.49em, weight: "bold")[#title]
     if subtitle != none {
@@ -93,7 +92,7 @@
 
   v(1fr)
 
-  // authrs & supervisor
+  // authors & supervisor
   authors.map(author => {
     grid(
       columns: (4fr, 6fr),
@@ -105,17 +104,17 @@
   }).join(v(0.7em))
   v(2em)
   [
-    *Betreuer:* #supervisor \
-    #linguify("performed-in-year") #year
+    *#l10n.supervisor:* #supervisor \
+    #l10n.performed-in-year #year
   ]
 
   // footer
   line(length: 100%)
   [
-    #linguify("submission-note"): \
+    #l10n.submission-note: \
     #date.display()
     #h(1fr)
-    #linguify("approved"):
+    #l10n.approved:
     #h(3cm)
   ]
 
@@ -125,7 +124,7 @@
 }
 
 #let declaration(body) = [
-  = #linguify("declaration-title")
+  = #l10n.declaration-title
 
   #body
 
@@ -136,7 +135,7 @@
       [
         #v(1.5cm)
         #line(length: 80%)
-        #linguify("location-date")
+        #l10n.location-date
       ],
       [
         #v(1.5cm)
@@ -150,7 +149,7 @@
 #let abstract(lang: auto, body) = [
   #set text(lang: lang) if lang != auto
 
-  = #linguify("abstract")
+  = #l10n.abstract
 
   #body
 ]
