@@ -1,5 +1,6 @@
 #import "assets.typ"
 #import "l10n.typ"
+#import "utils.typ"
 
 #let _title = state("thesis-title")
 #let _authors = state("thesis-authors")
@@ -17,6 +18,8 @@
   language: "de",
   paper: "a4",
 ) = body => {
+  import "@preview/hydra:0.4.0": hydra, anchor, core
+
   set document(title: title, date: date)
   set page(paper: paper)
   set text(lang: language)
@@ -32,7 +35,7 @@
   show heading.where(level: 1): set heading(supplement: l10n.chapter)
   show heading.where(level: 1): it => {
     set text(1.3em)
-    pagebreak()
+    pagebreak(to: "odd")
     v(20%)
     if it.numbering != none [
       #it.supplement #counter(heading).display()
@@ -44,8 +47,7 @@
   }
 
   show heading.where(level: 2): it => {
-    let prev = query(selector(heading).before(here()))
-    if prev.len() >= 2 and prev.at(prev.len() - 2).level == 1 {
+    if utils.is-first-section() {
       pagebreak()
     }
     it
@@ -118,12 +120,54 @@
     #h(3cm)
   ]
 
-  set page(numbering: "1")
+  // regular page setup: show header & footer on "content" pages,
+  // show only page number in chapter title pages
+  set page(
+    margin: (y: 1.5in),
+    header-ascent: 15%,
+    footer-descent: 15%,
+    header: context {
+      if not utils.is-chapter-page() {
+        hydra(
+          1,
+          prev-filter: (ctx, candidates) => candidates.primary.prev.outlined == true,
+          display: (ctx, candidate) => {
+            _title.get()
+            h(1fr)
+            core.display(ctx, candidate)
+            line(length: 100%)
+          },
+        )
+        anchor()
+      }
+    },
+    footer: context {
+      if not utils.is-chapter-page() {
+        hydra(
+          1,
+          prev-filter: (ctx, candidates) => candidates.primary.prev.outlined == true,
+          display: (ctx, candidate) => {
+            line(length: 100%)
+            _authors.get().map(author => author.name).join[, ]
+            h(1fr)
+            counter(page).display("1 / 1", both: true)
+          },
+        )
+      } else {
+        align(center)[
+          #counter(page).display("1")
+        ]
+      }
+    },
+  )
 
   body
 }
 
 #let declaration(body) = [
+  #let signature-height = 1.3cm
+  #let caption-spacing = -0.2cm
+
   = #l10n.declaration-title
 
   #body
@@ -133,13 +177,15 @@
       columns: (4fr, 6fr),
       align: center,
       [
-        #v(1.5cm)
+        #v(signature-height)
         #line(length: 80%)
+        #v(caption-spacing)
         #l10n.location-date
       ],
       [
-        #v(1.5cm)
+        #v(signature-height)
         #line(length: 80%)
+        #v(caption-spacing)
         #author.name
       ],
     )
@@ -155,41 +201,9 @@
 ]
 
 #let main-matter() = body => {
-  import "@preview/hydra:0.4.0": hydra, anchor, core
-
   outline()
 
   set heading(outlined: true, numbering: "1.1")
-  set page(
-    margin: (y: 1.5in),
-    header-ascent: 15%,
-    footer-descent: 15%,
-    header: context {
-      hydra(
-        1,
-        prev-filter: (ctx, candidates) => candidates.primary.prev.outlined == true,
-        display: (ctx, candidate) => {
-          _title.get()
-          h(1fr)
-          core.display(ctx, candidate)
-          line(length: 100%)
-        },
-      )
-      anchor()
-    },
-    footer: context {
-      hydra(
-        1,
-        prev-filter: (ctx, candidates) => candidates.primary.prev.outlined == true,
-        display: (ctx, candidate) => {
-          line(length: 100%)
-          _authors.get().map(author => author.name).join[, ]
-          h(1fr)
-          counter(page).display("1 / 1", both: true)
-        },
-      )
-    },
-  )
 
   body
 }
