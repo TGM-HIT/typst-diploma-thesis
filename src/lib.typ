@@ -14,6 +14,7 @@
   year: none,
   division: none,
   logo: none,
+  bibliography: none,
 
   language: "de",
   paper: "a4",
@@ -162,6 +163,10 @@
   )
 
   body
+
+  bibliography
+
+  outline(target: figure.where(kind: raw))
 }
 
 #let declaration(body) = [

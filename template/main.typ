@@ -14,6 +14,7 @@
   year: [2017/18],
   division: [Medientechnik, Systemtechnik],
   logo: assets.logo(width: 3cm),
+  bibliography: bibliography("bibliography.bib"),
 
   // language: "en",
 )
@@ -30,24 +31,15 @@
   // - ChatGPT: for basically everything
 ]
 
-#abstract[
-  #lorem(50)
-]
-
-#abstract(lang: "en")[
-  #lorem(50)
-]
+#include "chapters/kurzfassung.typ"
 
 #show: main-matter()
 
-= Vorwort
-
-#lorem(50)
-
-== Abschnitt 1
-
-#lorem(50)
-
-== Abschnitt 2
-
-#lorem(50)
+#include "chapters/vorwort.typ"
+#include "chapters/danksagung.typ"
+#include "chapters/einleitung.typ"
+#include "chapters/studie.typ"
+#include "chapters/konzept.typ"
+#include "chapters/implementierung.typ"
+#include "chapters/retrospektive.typ"
+#include "chapters/conclusio.typ"
