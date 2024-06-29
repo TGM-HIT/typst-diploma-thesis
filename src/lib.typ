@@ -128,7 +128,11 @@
     header-ascent: 15%,
     footer-descent: 15%,
     header: context {
-      if not utils.is-chapter-page() {
+      if utils.is-chapter-page() {
+        // no header
+      } else if utils.is-before-chapter-page() {
+        // no header
+      } else {
         hydra(
           1,
           prev-filter: (ctx, candidates) => candidates.primary.prev.outlined == true,
@@ -143,7 +147,13 @@
       }
     },
     footer: context {
-      if not utils.is-chapter-page() {
+      if utils.is-chapter-page() {
+        align(center)[
+          #counter(page).display("1")
+        ]
+      } else if utils.is-before-chapter-page() {
+        // no footer
+      } else {
         hydra(
           1,
           prev-filter: (ctx, candidates) => candidates.primary.prev.outlined == true,
@@ -154,10 +164,6 @@
             counter(page).display("1 / 1", both: true)
           },
         )
-      } else {
-        align(center)[
-          #counter(page).display("1")
-        ]
       }
     },
   )
