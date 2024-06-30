@@ -12,6 +12,12 @@ doc:
 	for f in $(find gallery -maxdepth 1 -name '*.typ'); do typst c "$f"; done
 	typst compile template/main.typ example.pdf
 
+	mkdir -p tmp
+	typst compile --ppi 250 template/main.typ 'tmp/example{n}.png'
+	mv tmp/example01.png thumbnail.png
+	rm tmp/example*.png
+	rmdir tmp
+
 # run test suite
 test *args:
 	typst-test run {{ args }}
