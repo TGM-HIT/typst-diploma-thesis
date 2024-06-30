@@ -24,6 +24,7 @@
   paper: "a4",
 ) = body => {
   import "@preview/hydra:0.4.0": hydra, anchor
+  import "@preview/i-figured:0.2.4"
 
   set document(title: title, date: date)
   set page(paper: paper)
@@ -34,6 +35,9 @@
   _title.update(title)
   _authors.update(authors)
   l10n.set-database()
+
+  show heading: i-figured.reset-counters
+  show figure: i-figured.show-figure
 
   set heading(outlined: false)
   show heading: set heading(supplement: l10n.section)
@@ -188,9 +192,9 @@
 
   bibliography
 
-  outline(
+  i-figured.outline(
     title: l10n.list-of-listings,
-    target: figure.where(kind: raw),
+    target-kind: raw,
   )
 }
 
