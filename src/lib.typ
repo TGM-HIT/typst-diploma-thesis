@@ -5,6 +5,8 @@
 #let _title = state("thesis-title")
 #let _authors = state("thesis-authors")
 
+#import utils: chapter-end
+
 #let thesis(
   title: none,
   subtitle: none,
@@ -130,7 +132,7 @@
     header: context {
       if utils.is-chapter-page() {
         // no header
-      } else if utils.is-before-chapter-page() {
+      } else if utils.is-empty-page() {
         // no header
       } else {
         hydra(
@@ -151,7 +153,7 @@
         align(center)[
           #counter(page).display("1")
         ]
-      } else if utils.is-before-chapter-page() {
+      } else if utils.is-empty-page() {
         // no footer
       } else {
         hydra(
