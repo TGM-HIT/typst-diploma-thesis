@@ -16,3 +16,7 @@
 #let chapter = linguify.linguify("chapter")
 #let section = linguify.linguify("section")
 #let abstract = linguify.linguify("abstract")
+
+#let bibliography = linguify.linguify("bibliography")
+#let list-of-listings = linguify.linguify("list-of-listings")
+#let listing = linguify.linguify("listing")

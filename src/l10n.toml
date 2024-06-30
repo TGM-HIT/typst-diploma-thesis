@@ -24,6 +24,10 @@ chapter = "Chapter"
 section = "Section"
 abstract = "Abstract"
 
+bibliography = "Bibliography"
+list-of-listings = "List of Listings"
+listing = "Listing"
+
 [lang.de]
 thesis = "Diplomarbeit"
 supervisor = "Betreuer"
@@ -47,3 +51,7 @@ location-date = "Ort, Datum"
 chapter = "Kapitel"
 section = "Abschnitt"
 abstract = "Kurzfassung"
+
+bibliography = "Literaturverzeichnis"
+list-of-listings = "Auflistungsverzeichnis"
+listing = "Auflistung"

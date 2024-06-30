@@ -2,6 +2,8 @@
 #import "l10n.typ"
 #import "utils.typ"
 
+#let _builtin_bibliography = bibliography
+
 #let _title = state("thesis-title")
 #let _authors = state("thesis-authors")
 
@@ -21,7 +23,7 @@
   language: "de",
   paper: "a4",
 ) = body => {
-  import "@preview/hydra:0.4.0": hydra, anchor, core
+  import "@preview/hydra:0.4.0": hydra, anchor
 
   set document(title: title, date: date)
   set page(paper: paper)
@@ -55,6 +57,10 @@
     }
     it
   }
+
+  set _builtin_bibliography(title: l10n.bibliography)
+  show _builtin_bibliography: set heading(outlined: true)
+  show figure.where(kind: raw): set figure(supplement: l10n.listing)
 
   // title page
   set page(margin: (x: 1in, y: 0.75in))
@@ -141,7 +147,15 @@
           display: (ctx, candidate) => {
             _title.get()
             h(1fr)
-            core.display(ctx, candidate)
+
+            if candidate.has("numbering") and candidate.numbering != none {
+              l10n.chapter
+              [ ]
+              numbering(candidate.numbering, ..counter(heading).at(candidate.location()))
+              [. ]
+            }
+            candidate.body
+
             line(length: 100%)
           },
         )
@@ -174,7 +188,10 @@
 
   bibliography
 
-  outline(target: figure.where(kind: raw))
+  outline(
+    title: l10n.list-of-listings,
+    target: figure.where(kind: raw),
+  )
 }
 
 #let declaration(body) = [
