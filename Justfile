@@ -10,6 +10,7 @@ default:
 doc:
 	typst compile docs/manual.typ docs/manual.pdf
 	for f in $(find gallery -maxdepth 1 -name '*.typ'); do typst c "$f"; done
+	typst compile template/main.typ example.pdf
 
 # run test suite
 test *args:
