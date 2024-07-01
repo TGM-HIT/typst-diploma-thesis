@@ -20,3 +20,4 @@
 #let bibliography = linguify.linguify("bibliography")
 #let list-of-listings = linguify.linguify("list-of-listings")
 #let listing = linguify.linguify("listing")
+#let glossary = linguify.linguify("glossary")

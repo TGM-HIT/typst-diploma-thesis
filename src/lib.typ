@@ -1,5 +1,6 @@
 #import "assets.typ"
 #import "l10n.typ"
+#import "glossary.typ"
 #import "utils.typ"
 
 #let _builtin_bibliography = bibliography
@@ -8,6 +9,7 @@
 #let _authors = state("thesis-authors")
 
 #import utils: chapter-end
+#import glossary: glossary-entry, gls, glspl
 
 #let thesis(
   title: none,
@@ -38,6 +40,7 @@
 
   show heading: i-figured.reset-counters
   show figure: i-figured.show-figure
+  show: glossary.make-glossary
 
   set heading(outlined: false)
   show heading: set heading(supplement: l10n.section)
@@ -195,6 +198,10 @@
   i-figured.outline(
     title: l10n.list-of-listings,
     target-kind: raw,
+  )
+
+  glossary.print-glossary(
+    title: [= #l10n.glossary],
   )
 }
 

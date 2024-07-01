@@ -27,6 +27,7 @@ abstract = "Abstract"
 bibliography = "Bibliography"
 list-of-listings = "List of Listings"
 listing = "Listing"
+glossary = "Glossary"
 
 [lang.de]
 thesis = "Diplomarbeit"
@@ -55,3 +56,4 @@ abstract = "Kurzfassung"
 bibliography = "Literaturverzeichnis"
 list-of-listings = "Auflistungsverzeichnis"
 listing = "Auflistung"
+glossary = "Glossar"
