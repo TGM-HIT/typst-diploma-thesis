@@ -40,6 +40,7 @@
 
   show heading: i-figured.reset-counters
   show figure: i-figured.show-figure
+  show math.equation: i-figured.show-equation
   show: glossary.make-glossary
 
   set heading(outlined: false)
@@ -193,7 +194,7 @@
 
   body
 
-  bibliography
+  [#bibliography <bibliography>]
 
   i-figured.outline(
     title: l10n.list-of-listings,
@@ -201,7 +202,7 @@
   )
 
   glossary.print-glossary(
-    title: [= #l10n.glossary],
+    title: [= #l10n.glossary <glossary>],
   )
 }
 
