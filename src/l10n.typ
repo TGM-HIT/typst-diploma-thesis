@@ -17,7 +17,12 @@
 #let section = linguify.linguify("section")
 #let abstract = linguify.linguify("abstract")
 
-#let bibliography = linguify.linguify("bibliography")
-#let list-of-listings = linguify.linguify("list-of-listings")
+#let figure = linguify.linguify("figure")
+#let table = linguify.linguify("table")
 #let listing = linguify.linguify("listing")
+
+#let bibliography = linguify.linguify("bibliography")
+#let list-of-figures = linguify.linguify("list-of-figures")
+#let list-of-tables = linguify.linguify("list-of-tables")
+#let list-of-listings = linguify.linguify("list-of-listings")
 #let glossary = linguify.linguify("glossary")

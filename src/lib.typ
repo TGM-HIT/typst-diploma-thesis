@@ -196,10 +196,36 @@
 
   [#bibliography <bibliography>]
 
-  i-figured.outline(
-    title: l10n.list-of-listings,
-    target-kind: raw,
-  )
+  context {
+    if query(figure).len() != 0 {
+      [= #l10n.list-of-figures <list-of-figures>]
+
+      i-figured.outline(
+        title: none,
+        target-kind: image,
+      )
+    }
+
+    if query(figure.where(kind: table)).len() != 0 {
+      [= #l10n.list-of-tables <list-of-tables>]
+
+      i-figured.outline(
+        title: none,
+        target-kind: table,
+      )
+    }
+
+    if query(figure.where(kind: raw)).len() != 0 {
+      [= #l10n.list-of-listings <list-of-listings>]
+
+      i-figured.outline(
+        title: none,
+        target-kind: raw,
+      )
+    }
+  }
+
+  set heading(outlined: true)
 
   glossary.print-glossary(
     title: [= #l10n.glossary <glossary>],

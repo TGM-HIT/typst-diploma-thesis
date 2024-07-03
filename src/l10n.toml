@@ -24,9 +24,14 @@ chapter = "Chapter"
 section = "Section"
 abstract = "Abstract"
 
-bibliography = "Bibliography"
-list-of-listings = "List of Listings"
+figure = "Figure"
+table = "Table"
 listing = "Listing"
+
+bibliography = "Bibliography"
+list-of-figures = "List of Figures"
+list-of-tables = "List of Tables"
+list-of-listings = "List of Listings"
 glossary = "Glossary"
 
 [lang.de]
@@ -53,7 +58,12 @@ chapter = "Kapitel"
 section = "Abschnitt"
 abstract = "Kurzfassung"
 
-bibliography = "Literaturverzeichnis"
-list-of-listings = "Auflistungsverzeichnis"
+figure = "Abbildung"
+table = "Tabelle"
 listing = "Auflistung"
+
+bibliography = "Literaturverzeichnis"
+list-of-figures = "Abbildungsverzeichnis"
+list-of-tables = "Tabellenverzeichnis"
+list-of-listings = "Auflistungsverzeichnis"
 glossary = "Glossar"
