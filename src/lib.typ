@@ -195,6 +195,7 @@
   body
 
   [#bibliography <bibliography>]
+  chapter-end()
 
   context {
     if query(figure).len() != 0 {
