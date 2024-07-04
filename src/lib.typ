@@ -26,6 +26,7 @@
   strict-chapter-end: true,
 ) = body => {
   import "@preview/codly:0.2.0": codly, codly-init
+  import "@preview/datify:0.1.2"
   import "@preview/hydra:0.4.0": hydra, anchor
   import "@preview/i-figured:0.2.4"
 
@@ -136,10 +137,19 @@
     ]
 
     // footer
+    let date-formats = (
+      "en": "Month DD, YYYY",
+      "de": "DD. Month YYYY",
+    )
+
     line(length: 100%)
     [
       #l10n.submission-note: \
-      #date.display()
+      #context if text.lang in date-formats {
+        datify.custom-date-format(date, date-formats.at(text.lang))
+      } else {
+        date.display()
+      }
       #h(1fr)
       #l10n.approved:
       #h(3cm)
