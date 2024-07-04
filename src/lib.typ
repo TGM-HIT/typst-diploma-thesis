@@ -24,6 +24,7 @@
   language: "de",
   paper: "a4",
 ) = body => {
+  import "@preview/codly:0.2.0": codly, codly-init
   import "@preview/hydra:0.4.0": hydra, anchor
   import "@preview/i-figured:0.2.4"
 
@@ -46,6 +47,11 @@
 
   // setup glossarium
   show: glossary.make-glossary
+
+  // setup codly & listing styles
+  show: codly-init.with()
+  codly(padding: 0.3em)
+  show figure.where(kind: raw): set block(width: 95%)
 
   // general styles
 
