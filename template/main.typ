@@ -17,6 +17,7 @@
   bibliography: bibliography("bibliography.bib"),
 
   // language: "en",
+  // strict-chapter-end: false,
 )
 
 #include "glossaries.typ"

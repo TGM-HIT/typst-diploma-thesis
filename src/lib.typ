@@ -23,6 +23,7 @@
 
   language: "de",
   paper: "a4",
+  strict-chapter-end: true,
 ) = body => {
   import "@preview/codly:0.2.0": codly, codly-init
   import "@preview/hydra:0.4.0": hydra, anchor
@@ -278,6 +279,10 @@
     )
     chapter-end()
   }
+
+  if strict-chapter-end {
+    utils.enforce-chapter-end-placement()
+  }
 }
 
 #let declaration(body) = [
@@ -306,6 +311,8 @@
       ],
     )
   }).join(v(0.7em))
+
+  #chapter-end()
 ]
 
 #let abstract(lang: auto, body) = [
@@ -316,10 +323,13 @@
   ]
 
   #body
+
+  #chapter-end()
 ]
 
 #let main-matter() = body => {
   outline()
+  chapter-end()
 
   set heading(outlined: true, numbering: "1.1")
 
