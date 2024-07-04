@@ -55,6 +55,26 @@
   codly(padding: 0.3em)
   show figure.where(kind: raw): set block(width: 95%)
 
+  // outline style
+  set outline(indent: auto)
+  // aligned and less dense dots
+  show outline.entry: it => context {
+    let max-page-width = calc.max(..range(1, counter(page).final().first()).map(p => {
+      measure([#sym.space.med#p]).width
+    }))
+
+    [#it.body ]
+    box(width: 1fr, align(right, utils.repeat(gap: 3pt)[.]))
+    box(width: max-page-width, align(right, it.page))
+  }
+  // level 1 headings get a bit of spacing
+  show outline.entry.where(level: 1): it => {
+    if type(it.element) != content or it.element.func() != heading { return it }
+
+    v(1.2em, weak: true)
+    it
+  }
+
   // general styles
 
   // figure supplements
