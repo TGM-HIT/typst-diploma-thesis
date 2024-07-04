@@ -328,7 +328,8 @@
 ]
 
 #let main-matter() = body => {
-  outline()
+  [= #l10n.contents <contents>]
+  outline(title: none)
   chapter-end()
 
   set heading(outlined: true, numbering: "1.1")

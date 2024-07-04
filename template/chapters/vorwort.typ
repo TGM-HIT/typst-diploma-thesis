@@ -127,8 +127,9 @@ Einige Teile der Diplomarbeit sind durch die Vorlage mit Labels versehen und kö
 - @declaration
 - #text(lang: "de")[@abstract-de]
 - #text(lang: "en")[@abstract-en]
+- @contents
 - @bibliography
-- (#l10n.list-of-figures -- wird in der Vorlage nicht verwendet) // @list-of-figures
+- (#l10n.list-of-figures -- kein Link da in der Vorlage keine "normalen" Abbildungen sind) // @list-of-figures
 - @list-of-tables
 - @list-of-listings
 - @glossary
