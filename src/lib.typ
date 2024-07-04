@@ -198,7 +198,7 @@
   chapter-end()
 
   context {
-    if query(figure).len() != 0 {
+    if query(figure.where(kind: image)).len() != 0 {
       [= #l10n.list-of-figures <list-of-figures>]
 
       i-figured.outline(
