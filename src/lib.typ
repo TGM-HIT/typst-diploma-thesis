@@ -32,7 +32,6 @@
   set page(paper: paper)
   set text(lang: language)
   set par(justify: true)
-  set line(stroke: 0.1mm)
 
   // make properties accessible as state
   _authors.update(authors)
@@ -54,6 +53,12 @@
   show figure.where(kind: image): set figure(supplement: l10n.figure)
   show figure.where(kind: table): set figure(supplement: l10n.table)
   show figure.where(kind: raw): set figure(supplement: l10n.listing)
+
+  // table & line styles
+  set line(stroke: 0.1mm)
+  set table(stroke: (x, y) => if y == 0 {
+    (bottom: 0.1mm)
+  })
 
   // references to non-numbered headings
   show ref: it => {
