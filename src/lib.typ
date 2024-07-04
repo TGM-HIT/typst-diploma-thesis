@@ -66,9 +66,17 @@
     it
   }
 
-  set _builtin_bibliography(title: l10n.bibliography)
+  set _builtin_bibliography(title: none)
   show _builtin_bibliography: set heading(outlined: true)
   show figure.where(kind: raw): set figure(supplement: l10n.listing)
+
+  show ref: it => {
+    if type(it.element) != content { return it }
+    if it.element.func() != heading { return it }
+    if it.element.numbering != none { return it }
+
+    link(it.target, it.element.body)
+  }
 
   // title page
   set page(margin: (x: 1in, y: 0.75in))
@@ -194,7 +202,8 @@
 
   body
 
-  [#bibliography <bibliography>]
+  [= #l10n.bibliography <bibliography>]
+  bibliography
   chapter-end()
 
   context {
@@ -237,7 +246,7 @@
   #let signature-height = 1.3cm
   #let caption-spacing = -0.2cm
 
-  = #l10n.declaration-title
+  = #l10n.declaration-title <declaration>
 
   #body
 
@@ -264,7 +273,9 @@
 #let abstract(lang: auto, body) = [
   #set text(lang: lang) if lang != auto
 
-  = #l10n.abstract
+  #context [
+    #[= #l10n.abstract] #label("abstract-" + text.lang)
+  ]
 
   #body
 ]

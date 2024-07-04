@@ -5,7 +5,7 @@
   link(..args)
 }
 
-= Vorwort
+= Vorwort <preface>
 
 Die Diplomarbeit ist kein Aufsatz! Auch wenn sie interessant gestaltet werden sollte, ist sie unpersönlich und im passiv zu schreiben. Besonders sind die Quellenangaben, welche entsprechend gewählt und referenziert werden müssen. Innerhalb dieser Vorlage existieren zwei Dateien, die zu genau diesem Zweck erstellt wurden. Die Datei `bibliography.bib` beinhaltet alle Quellenangaben und verwendete Literatur, `glossaries.typ` alle Definitionen von Begriffen und Akronymen, welche in der Arbeit selbst nicht genauer erklärt werden.
 
@@ -41,7 +41,7 @@ In `bibliography.bib` ist die referenzierte Quelle folgendermaßen definiert:
 
 Als allererstes sieht man die ID dieser Quelle, `physik1`, damit lässt sich diese entweder mit ```typ @physik1``` referenzieren, oder mit einer zusätzlichen Detailangabe wie etwa für die Seitenzahl: #box[```typ @physik1[S. 145]```]. Besonders bei direkten Zitaten empfiehlt es sich auch die Seitenzahl anzugeben.
 
-Nach der Verwendung einer Quelle wird diese auch im #link(<bibliography>)[Literaturverzeichnis] gelistet, welche sich am Ende des Dokuments befindet. Quellen die nicht referenziert werden, werden nicht angezeigt. Es ist also unproblematisch, großzügig Quellen in `bibliography.bib` aufzunehmen: besser mehr Literatur parat zu haben, als sie dann nachträglich suchen zu müssen.
+Nach der Verwendung einer Quelle wird diese auch im @bibliography gelistet, welche sich am Ende des Dokuments befindet. Quellen die nicht referenziert werden, werden nicht angezeigt. Es ist also unproblematisch, großzügig Quellen in `bibliography.bib` aufzunehmen: besser mehr Literatur parat zu haben, als sie dann nachträglich suchen zu müssen.
 
 Relevante Dokumentation:
 
@@ -52,7 +52,7 @@ Relevante Dokumentation:
 
 == Glossar
 
-Ein Glossar enthält Erklärungen von Begriffen und Abkürzen, die im Fließtext keinen Platz haben. Dadurch wird sichergestellt, dass der Lesefluss für Fachkundige nicht gestört wird, die Arbeit aber trotzdem auch für ein breiteres Publikum zugänglich ist. In der Datei `glossaries.typ` werden Begriffe -- oder in diesem Fall eine Abkürzung -- in der folgenden Form definiert:
+Das @glossary enthält Erklärungen von Begriffen und Abkürzen, die im Fließtext keinen Platz haben. Dadurch wird sichergestellt, dass der Lesefluss für Fachkundige nicht gestört wird, die Arbeit aber trotzdem auch für ein breiteres Publikum zugänglich ist. In der Datei `glossaries.typ` werden Begriffe -- oder in diesem Fall eine Abkürzung -- in der folgenden Form definiert:
 
 #figure(
   ```typ
@@ -87,7 +87,7 @@ Abbildungen, Tabellen, Codestücke und ähnlich eigenständige Inhalte werden of
   caption: [Definition einer Abbildung],
 ) <figure-definition>
 
-Die Präfixes werden durch das _i-figured_-Paket eingefügt. Dieses Paket bewirkt, dass Abbildungen nicht durchlaufend nummeriert sind, sondern kapitelweise.
+Die Präfixe werden durch das _i-figured_-Paket eingefügt. Dieses Paket bewirkt, dass Abbildungen nicht durchlaufend nummeriert sind, sondern kapitelweise.
 
 #figure(
   table(
@@ -101,7 +101,7 @@ Die Präfixes werden durch das _i-figured_-Paket eingefügt. Dieses Paket bewirk
     [Auflistung], [```typ raw()```], [`lst:`], [```typ raw()``` hat auch die Spezial-Syntax ```typ `...` ``` oder  ````typ ```...``` ````],
     [Gleichung], [```typ math.equation()```], [`eqt:`], [```typ math.equation()``` hat auch die Spezial-Syntax ```typ $ ... $```],
   ),
-  caption: [Arten von Abbildungen],
+  caption: [Arten von Abbildungen und deren Präfixe in _i-figured_],
 ) <figure-kinds>
 
 #block(breakable: false)[
@@ -113,7 +113,23 @@ Die Präfixes werden durch das _i-figured_-Paket eingefügt. Dieses Paket bewirk
 Relevante Dokumentation:
 
 - #highlighted-link("https://typst.app/docs/reference/model/figure/")[```typ figure()```]
+- #highlighted-link("https://typst.app/docs/reference/foundations/label/")[```typ <...>``` bzw. ```typ label()```]
 - #highlighted-link("https://typst.app/docs/reference/model/table/")[```typ table()```]
 - #highlighted-link("https://typst.app/docs/reference/text/raw/")[````typ ```...``` ```` bzw. ```typ raw()```]
 - #highlighted-link("https://typst.app/docs/reference/math/equation/")[```typ $ ... $``` bzw. ```typ math.equation()```]
 - #highlighted-link("https://typst.app/universe/package/i-figured/0.2.4/")[das i-figured-Paket]
+
+== Interne Verweise <internal-references>
+
+Neben Referenzen auf Quellen, Abbildungen und Glossar-Einträge kann die ```typ @key```-Syntax auch verwendet werden, um auf Kapitel und Abschnitte zu referenzieren. Da dieses Kapitel mit dem Label ```typ <preface>``` versehen ist lässt sich zum Beispiel mit ```typ @preface``` leicht ein Verweis einfügen: @preface. Gleichermaßen funktioniert ein Verweis auf @internal-references, in dem dieser Text steht. Im PDF sind auch diese Verweise Links.
+
+Einige Teile der Diplomarbeit sind durch die Vorlage mit Labels versehen und können damit wenn nötig referenziert werden:
+- @declaration
+- #text(lang: "de")[@abstract-de]
+- #text(lang: "en")[@abstract-en]
+- @bibliography
+- (#l10n.list-of-figures -- wird in der Vorlage nicht verwendet) // @list-of-figures
+- @list-of-tables
+- @list-of-listings
+- @glossary
+Da diese Überschriften keine Nummerierung haben, werden Referenzen zu ihnen mit dem vollen Namen dargestellt.
