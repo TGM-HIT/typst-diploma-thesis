@@ -233,7 +233,15 @@
 
   // back matter
 
-  // bibliography is outlined, and we use our own header
+  // glossary is outlined
+  {
+    set heading(outlined: true)
+
+    glossary.print-glossary(title: [= #l10n.glossary <glossary>])
+    chapter-end()
+  }
+
+  // bibliography is outlined, and we use our own header for the label
   {
     set _builtin_bibliography(title: none)
     set heading(outlined: true)
@@ -244,40 +252,31 @@
   }
 
   // List of {Figures, Tables, Listings} only shown if there are any such elements
-  context {
-    if query(figure.where(kind: image)).len() != 0 {
-      [= #l10n.list-of-figures <list-of-figures>]
-
-      i-figured.outline(
-        title: none,
-        target-kind: image,
-      )
-    }
-
-    if query(figure.where(kind: table)).len() != 0 {
-      [= #l10n.list-of-tables <list-of-tables>]
-
-      i-figured.outline(
-        title: none,
-        target-kind: table,
-      )
-    }
-
-    if query(figure.where(kind: raw)).len() != 0 {
-      [= #l10n.list-of-listings <list-of-listings>]
-
-      i-figured.outline(
-        title: none,
-        target-kind: raw,
-      )
-    }
+  context if query(figure.where(kind: image)).len() != 0 {
+    [= #l10n.list-of-figures <list-of-figures>]
+    i-figured.outline(
+      title: none,
+      target-kind: image,
+    )
+    chapter-end()
   }
 
-  // glossary is outlined
-  {
-    set heading(outlined: true)
+  context if query(figure.where(kind: table)).len() != 0 {
+    [= #l10n.list-of-tables <list-of-tables>]
+    i-figured.outline(
+      title: none,
+      target-kind: table,
+    )
+    chapter-end()
+  }
 
-    glossary.print-glossary(title: [= #l10n.glossary <glossary>])
+  context if query(figure.where(kind: raw)).len() != 0 {
+    [= #l10n.list-of-listings <list-of-listings>]
+    i-figured.outline(
+      title: none,
+      target-kind: raw,
+    )
+    chapter-end()
   }
 }
 
