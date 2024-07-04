@@ -45,8 +45,8 @@ Nach der Verwendung einer Quelle wird diese auch im @bibliography gelistet, welc
 
 Relevante Dokumentation:
 
-- #highlighted-link("https://typst.app/docs/reference/model/bibliography/")[```typ bibliography()```]
-- #highlighted-link("https://typst.app/docs/reference/model/cite/")[```typ @key``` bzw. ```typ cite()```]
+- #highlighted-link("https://typst.app/docs/reference/model/bibliography/")[```typc bibliography()```]
+- #highlighted-link("https://typst.app/docs/reference/model/cite/")[```typ @key``` bzw. ```typc cite()```]
 - #highlighted-link("https://www.bibtex.com/g/bibtex-format/")[das BibTeX-Dateiformat]
 - #highlighted-link("https://github.com/typst/hayagriva/blob/main/docs/file-format.md")[das Hayagriva-Dateiformat]
 
@@ -75,7 +75,7 @@ Relevante Dokumentation:
 
 == Abbildungen und Gleichungen
 
-Abbildungen, Tabellen, Codestücke und ähnlich eigenständige Inhalte werden oft verwendet, um den Fließtext zu komplementieren. In den vorangegangenen Abschnitten wurden bereits zwei _Auflistungen_, also Codestücke, verwendet. Abbildungen sollten normalerweise im Fließtext referenziert werden, damit die inhaltliche Relevanz explizit klar ist. Zum Beispiel könnte mittels ```typ @fig:picture``` auf die in @lst:figure-definition gezeigte Abbildung verwiesen werden. Der Präfix `fig:` wurde dabei durch die Art des Inhalts bestimmt, siehe @tbl:figure-kinds. Die Verweise in diesem Absatz benutzen genau diesen Mechanismus. In der PDF-Version der Arbeit sind diese Verweise funktionierende Links.
+Abbildungen, Tabellen, Codestücke und ähnlich eigenständige Inhalte werden oft verwendet, um den Fließtext zu komplementieren. In den vorangegangenen Abschnitten wurden bereits zwei _Auflistungen_, also Codestücke, verwendet. Abbildungen sollten normalerweise im Fließtext referenziert werden, damit die inhaltliche Relevanz explizit klar ist. Zum Beispiel könnte mittels ```typ @fig:picture``` auf die in @lst:figure-definition gezeigte Abbildung verwiesen werden. Die Verweise in diesem Abschnitt benutzen genau diesen Mechanismus, in der PDF-Version der Arbeit sind diese Verweise funktionierende Links. Der Präfix `fig:` wurde dabei durch das _i-figured_-Paket eingefügt und anhand die Art des Inhalts bestimmt, siehe @tbl:figure-kinds. Dieses Paket bewirkt auch, dass Abbildungen nicht durchlaufend nummeriert sind, sondern kapitelweise.
 
 #figure(
   ```typ
@@ -84,10 +84,9 @@ Abbildungen, Tabellen, Codestücke und ähnlich eigenständige Inhalte werden of
     caption: [Ein Bild],
   ) <picture>
   ```,
+  placement: auto,
   caption: [Definition einer Abbildung],
 ) <figure-definition>
-
-Die Präfixe werden durch das _i-figured_-Paket eingefügt. Dieses Paket bewirkt, dass Abbildungen nicht durchlaufend nummeriert sind, sondern kapitelweise.
 
 #figure(
   table(
@@ -101,22 +100,23 @@ Die Präfixe werden durch das _i-figured_-Paket eingefügt. Dieses Paket bewirkt
     [Auflistung], [```typ raw()```], [`lst:`], [```typ raw()``` hat auch die Spezial-Syntax ```typ `...` ``` oder  ````typ ```...``` ````],
     [Gleichung], [```typ math.equation()```], [`eqt:`], [```typ math.equation()``` hat auch die Spezial-Syntax ```typ $ ... $```],
   ),
+  placement: auto,
   caption: [Arten von Abbildungen und deren Präfixe in _i-figured_],
 ) <figure-kinds>
 
-#block(breakable: false)[
-  Mathematische Gleichungen werden gemäß den Konventionen ein bisschen anders dargestellt und haben in Typst außerdem eine eigene Syntax. Die Definition von @eqt:pythagoras kann im Quelltext des Vorworts eingesehen werden.
+Es ist in wissenschaftlichen Arbeiten auch üblich, Abbildungen zur besseren Seitennutzung zu verschieben -- normalerweise an den oberen oder unteren Rand einer Seite. In Typst kann dazu ```typc figure(.., placement: auto)``` benutzt werden. Die Abbildungen in diesem Abschnitt benutzen diese Funktionalität: obwohl dieser Absatz im Quelltext nach den Abbildungen kommt, beginnt er vor ihnen und endet erst auf der nächsten Seite, danach. Ob die Ergebnisse der automatischen Platzierung zufriedenstellend sind sollte für die Endversion natürlich nochmal manuell geprüft werden.
 
-  $ a^2 + b^2 = c^2 $ <pythagoras>
-]
+Mathematische Gleichungen werden gemäß den Konventionen ein bisschen anders dargestellt und haben in Typst außerdem eine eigene Syntax. Die Definition von @eqt:pythagoras kann im Quelltext des Vorworts eingesehen werden:
+
+$ a^2 + b^2 = c^2 $ <pythagoras>
 
 Relevante Dokumentation:
 
-- #highlighted-link("https://typst.app/docs/reference/model/figure/")[```typ figure()```]
-- #highlighted-link("https://typst.app/docs/reference/foundations/label/")[```typ <...>``` bzw. ```typ label()```]
-- #highlighted-link("https://typst.app/docs/reference/model/table/")[```typ table()```]
-- #highlighted-link("https://typst.app/docs/reference/text/raw/")[````typ ```...``` ```` bzw. ```typ raw()```]
-- #highlighted-link("https://typst.app/docs/reference/math/equation/")[```typ $ ... $``` bzw. ```typ math.equation()```]
+- #highlighted-link("https://typst.app/docs/reference/model/figure/")[```typc figure()```]
+- #highlighted-link("https://typst.app/docs/reference/foundations/label/")[```typ <...>``` bzw. ```typc label()```]
+- #highlighted-link("https://typst.app/docs/reference/model/table/")[```typc table()```]
+- #highlighted-link("https://typst.app/docs/reference/text/raw/")[````typ ```...``` ```` bzw. ```typc raw()```]
+- #highlighted-link("https://typst.app/docs/reference/math/equation/")[```typ $ ... $``` bzw. ```typc math.equation()```]
 - #highlighted-link("https://typst.app/universe/package/i-figured/0.2.4/")[das i-figured-Paket]
 
 == Interne Verweise <internal-references>
