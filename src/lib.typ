@@ -21,7 +21,7 @@
 ///   about the thesis' topic.
 /// - authors (array): The thesis authors. Each array entry is a `dict` of the form
 ///   `(name: ..., class: ..., subtitle: ...)` stating their name, class, and the title of their
-///   part of the whole thesis project.
+///   part of the whole thesis project. The names must be regular strings, for the PDF metadata.
 /// - supervisor-label (content, string, auto): The term with which to label the supervisor name;
 ///   if not given or `auto`, this defaults to a language-dependent text. In German, this text is
 ///   gendered and can be overridden with this parameter.
@@ -62,7 +62,11 @@
   import "@preview/i-figured:0.2.4"
 
   // basic document & typesetting setup
-  set document(title: title, date: date)
+  set document(
+    title: title,
+    author: authors.map(author => author.name).join(", "),
+    date: date,
+  )
   set page(paper: paper)
   set text(lang: language)
   set par(justify: true)

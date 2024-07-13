@@ -4,10 +4,10 @@
   title: [Keine Panik!],
   subtitle: [Mit Typst durch die Diplomarbeit],
   authors: (
-    (name: [Arthur Dent], class: [5xHIT], subtitle: [Untertitel des Themengebiets von Arthur Dent]),
-    (name: [Ford Prefect], class: [5xHIT], subtitle: [Untertitel des Themengebiets von Ford Prefect]),
-    (name: [Tricia McMillan], class: [5xHIT], subtitle: [Untertitel des Themengebiets von Tricia McMillan]),
-    (name: [Zaphod Beeblebrox], class: [5xHIT], subtitle: [Untertitel des Themengebiets von Zaphod Beeblebrox]),
+    (name: "Arthur Dent", class: [5xHIT], subtitle: [Untertitel des Themengebiets von Arthur Dent]),
+    (name: "Ford Prefect", class: [5xHIT], subtitle: [Untertitel des Themengebiets von Ford Prefect]),
+    (name: "Tricia McMillan", class: [5xHIT], subtitle: [Untertitel des Themengebiets von Tricia McMillan]),
+    (name: "Zaphod Beeblebrox", class: [5xHIT], subtitle: [Untertitel des Themengebiets von Zaphod Beeblebrox]),
   ),
   // the German default supervisor label is the non-gendered "Betreuer", so you can override it here
   // as necessary
