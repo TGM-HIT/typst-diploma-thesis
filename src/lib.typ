@@ -14,6 +14,7 @@
   title: none,
   subtitle: none,
   authors: (),
+  supervisor-label: auto,
   supervisor: none,
   date: none,
   year: none,
@@ -160,8 +161,11 @@
       )
     }).join(v(0.7em))
     v(2em)
+    if supervisor-label == auto {
+      supervisor-label = l10n.supervisor
+    }
     [
-      *#l10n.supervisor:* #supervisor \
+      *#supervisor-label:* #supervisor \
       #l10n.performed-in-year #year
     ]
 
