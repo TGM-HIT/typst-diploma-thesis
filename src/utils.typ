@@ -70,6 +70,8 @@
   let ch-sel = heading.where(level: 1)
   let end-sel = selector(_chapter_end)
 
+  let chapters-and-ends = query(ch-sel.or(end-sel))
+
   let at-page(item) = "on page " + str(item.location().page())
   let ch-end-assert(check, message) = {
     if not check {
@@ -77,62 +79,27 @@
     }
   }
 
-  // make sure that there's no ends if there is no chapter
-  let chs = query(ch-sel)
-  if chs.len() == 0 {
-    let ends = query(end-sel)
+  for chunk in chapters-and-ends.chunks(2) {
+    // the first of each pair must be a chapter
+    let ch = chunk.first()
     ch-end-assert(
-      ends.len() == 0,
-      () => "extra chapter-end() found " + at-page(ends.first())
-    )
-  }
-
-  // make sure there is no chapter end before the first chapter
-  {
-    let early-ends = query(end-sel.before(ch-sel))
-    ch-end-assert(
-      early-ends.len() == 0,
-      () => "chapter-end() found before first chapter " + at-page(early-ends.first())
-    )
-  }
-
-  // if we get here, the first chapter is the first interesting location
-  let ch = chs.first()
-  while true {
-    // there may not be another chapter after the current chapter but before the chapter end
-    let more-chs = ch-sel.after(ch.location(), inclusive: false)
-    let more-ends = end-sel.after(ch.location(), inclusive: false)
-    let chs = query(more-chs.before(more-ends))
-    ch-end-assert(
-      chs.len() == 0,
-      () => "new chapter " + at-page(chs.first()) + " before the chapter " + at-page(ch) + " ended"
+      ch.func() == heading,
+      () => "extra chapter-end() found " + at-page(ch)
     )
 
-    // the chapter must end with a chapter-end()
-    let ends = query(more-ends)
+    // each chapter must come in a pair
     ch-end-assert(
-      ends.len() != 0,
+      chunk.len() == 2,
       () => "no chapter-end() for chapter " + at-page(ch)
     )
-    let end = ends.first()
 
-    // there may not be another chapter-end after the current end but before the next chapter
-    let more-ends = end-sel.after(end.location(), inclusive: false)
-    let more-chs = ch-sel.after(end.location(), inclusive: false)
-    let ends = query(more-ends.before(more-chs))
+    // the second item in the pair must be a chapter end
+    let end = chunk.last()
     ch-end-assert(
-      ends.len() == 0,
-      () => "extra chapter-end() " + at-page(ends.first())
+      end.func() == metadata,
+      () => "new chapter " + at-page(end) + " before the chapter " + at-page(ch) + " ended"
     )
-
-    // now the chapter may come
-    let chs = query(more-chs)
-    if chs.len() == 0 {
-      break
-    }
-    ch = chs.first()
   }
-  // if we get here, there are no more chapters and all chapters were terminated
 }
 
 /// *Internal function.* This is intended to be called in a section show rule. It returns whether
