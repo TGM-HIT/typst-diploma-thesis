@@ -1,5 +1,8 @@
 #import "@preview/linguify:0.4.0": set-database as _set_database, linguify
 
+/// *Internal function.* Initializes Linguify with the template's translation file.
+///
+/// -> content
 #let set-database() = _set_database(toml("l10n.toml"))
 
 #let thesis = linguify("thesis")

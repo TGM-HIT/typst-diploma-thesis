@@ -24,7 +24,7 @@
 ///   part of the whole thesis project. The names must be regular strings, for the PDF metadata.
 /// - supervisor-label (content, string, auto): The term with which to label the supervisor name;
 ///   if not given or `auto`, this defaults to a language-dependent text. In German, this text is
-///   gendered and can be overridden with this parameter.
+///   gender-specific and can be overridden with this parameter.
 /// - supervisor (content, string): The name of the thesis' supervisor.
 /// - date (datetime): The date of submission of the thesis.
 /// - year (content, string): The school year in which the thesis was produced.
@@ -36,9 +36,10 @@
 ///   supported. The choice of language influences certain texts on the title page and in headings,
 ///   as well as the date format used on the title page.
 /// - paper (string): Changes the paper format of the thesis. Use this option with care, as it will
-///   shift various contents around
+///   shift various contents around.
 /// - strict-chapter-end (bool): This can be activated to ensure proper use of the
-///   ```typc chapter-end()``` function. It is disabled by default because it slows down compilation.
+///   @@chapter-end() function. It is disabled by default because it slows down compilation. See
+///   @@enforce-chapter-end-placement().
 /// -> function
 #let thesis(
   title: none,
@@ -409,8 +410,8 @@
   #chapter-end()
 ]
 
-/// An abstract section. This should appear twice in the thesis; first for the German _Kurzfassung_,
-/// then for the English abstract.
+/// An abstract section. This should appear twice in the thesis regardless of language; first for
+/// the German _Kurzfassung_, then for the English abstract.
 ///
 /// - lang (string): The language of this abstract. Although it defaults to ```typc auto```, in
 ///   which case the document's language is used, it's preferable to always set the language

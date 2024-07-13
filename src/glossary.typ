@@ -2,11 +2,19 @@
 
 #let _glossary_entry = <thesis-glossary-entry>
 
-/// Stores a glossary entry for this thesis.
+/// Stores a glossary entry for this thesis. One call to this function is equivalent to one array
+/// entry in Glossarium's ```typc print-glossary()```'s main parameter.
 ///
-/// - key (string): The key with which the glossary entry can be referenced.
-/// - short (string): The short form of the entry -- mandatory.
+/// - key (string): The key with which the glossary entry can be referenced; must be unique.
+/// - short (string): Mandatory; the short form of the entry shown after the term has been first
+///   defined.
 /// - long (string): The long form of the entry.
+/// - long (string, content): The long form of the term, displayed in the glossary and on the first
+///   citation of the term.
+/// - desc (string, content): The description of the term.
+/// - plural (string, content): The pluralized short form of the term.
+/// - longplural (string, content): The pluralized long form of the term.
+/// - group (string): The group the term belongs to. The terms are displayed by groups in the glossary.
 /// -> content
 #let glossary-entry(
   key,
