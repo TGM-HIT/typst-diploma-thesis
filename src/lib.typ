@@ -36,6 +36,9 @@
   set text(lang: language)
   set par(justify: true)
 
+  // title page settings - must come before the first content (e.g. state update)
+  set page(margin: (x: 1in, top: 1in, bottom: 0.75in))
+
   // make properties accessible as state
   _authors.update(authors)
 
@@ -77,7 +80,8 @@
   show outline.entry.where(level: 1): it => {
     if type(it.element) != content or it.element.func() != heading { return it }
 
-    v(1.2em, weak: true)
+    set text(weight: "bold")
+    v(1.3em, weak: true)
     it
   }
 
@@ -106,24 +110,23 @@
   // title page
 
   {
-    set page(margin: (x: 1in, y: 0.75in))
-
     // header
     grid(
       columns: (auto, 1fr, auto),
       align: center+horizon,
-      assets.tgm-logo(width: 3cm),
+      assets.tgm-logo(width: 3.1cm),
       {
+        set text(1.2em)
         [Technologisches Gewerbemuseum]
         parbreak()
-        set text(0.8em)
+        set text(0.77em)
         [Höhere Technische Lehranstalt für Informationstechnologie]
         if division != none {
           linebreak()
           [Schwerpunkt #division]
         }
       },
-      assets.htl-logo(width: 3cm),
+      assets.htl-logo(width: 3.1cm),
     )
     line(length: 100%)
 
@@ -250,7 +253,7 @@
   show heading.where(level: 1): it => {
     set text(1.3em)
     pagebreak(to: "odd")
-    v(20%)
+    v(12%)
     if it.numbering != none [
       #it.supplement #counter(heading).display()
       #parbreak()
@@ -324,15 +327,21 @@
   }
 }
 
-#let declaration(body) = [
-  #let signature-height = 1.3cm
+#let declaration(
+  signature-height: 1.1cm,
+  body,
+) = [
   #let caption-spacing = -0.2cm
 
   = #l10n.declaration-title <declaration>
 
   #body
 
+  #v(0.2cm)
+
   #context _authors.get().map(author => {
+    show: block.with(breakable: false)
+    set text(0.9em)
     grid(
       columns: (4fr, 6fr),
       align: center,
@@ -349,7 +358,7 @@
         #author.name
       ],
     )
-  }).join(v(0.7em))
+  }).join()
 
   #chapter-end()
 ]
