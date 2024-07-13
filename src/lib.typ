@@ -229,9 +229,12 @@
           prev-filter: (ctx, candidates) => candidates.primary.prev.outlined == true,
           display: (ctx, candidate) => {
             line(length: 100%)
-            authors.map(author => author.name).join[, ]
-            h(1fr)
-            counter(page).display("1 / 1", both: true)
+            grid(
+              columns: (5fr, 1fr),
+              align: (left+bottom, right+bottom),
+              authors.map(author => box(author.name)).join[, ],
+              counter(page).display("1 / 1", both: true),
+            )
           },
         )
       }
