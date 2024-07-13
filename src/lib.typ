@@ -10,6 +10,36 @@
 #import utils: chapter-end
 #import glossary: glossary-entry, gls, glspl
 
+/// The main template function. Your document will generally start with ```typ #show: thesis(...)```,
+/// which it already does after initializing the template. Although all parameters are named, most
+/// of them are really mandatory. Parameters that are not given may result in missing content in
+/// places where it is not actually optional.
+///
+/// - title (content, string): The title of the thesis, displayed on the title page and used for PDF
+///   metadata.
+/// - subtitle (content, string): A descriptive one-liner that gives the reader an immediate idea
+///   about the thesis' topic.
+/// - authors (array): The thesis authors. Each array entry is a `dict` of the form
+///   `(name: ..., class: ..., subtitle: ...)` stating their name, class, and the title of their
+///   part of the whole thesis project.
+/// - supervisor-label (content, string, auto): The term with which to label the supervisor name;
+///   if not given or `auto`, this defaults to a language-dependent text. In German, this text is
+///   gendered and can be overridden with this parameter.
+/// - supervisor (content, string): The name of the thesis' supervisor.
+/// - date (datetime): The date of submission of the thesis.
+/// - year (content, string): The school year in which the thesis was produced.
+/// - division (content, string): The division inside the HIT department (i.e. usually
+///   "Medientechnik" or "Systemtechnik").
+/// - logo (content): The image (```typc image()```) to use as the document's logo on the title page.
+/// - bibliography (content): The bibliography (```typc bibliography()```) to use for the thesis.
+/// - language (string): The language in which the thesis is written. `"de"` and `"en"` are
+///   supported. The choice of language influences certain texts on the title page and in headings,
+///   as well as the date format used on the title page.
+/// - paper (string): Changes the paper format of the thesis. Use this option with care, as it will
+///   shift various contents around
+/// - strict-chapter-end (bool): This can be activated to ensure proper use of the
+///   ```typc chapter-end()``` function. It is disabled by default because it slows down compilation.
+/// -> function
 #let thesis(
   title: none,
   subtitle: none,
@@ -24,7 +54,7 @@
 
   language: "de",
   paper: "a4",
-  strict-chapter-end: true,
+  strict-chapter-end: false,
 ) = body => {
   import "@preview/codly:0.2.0": codly, codly-init
   import "@preview/datify:0.1.2"
@@ -331,6 +361,14 @@
   }
 }
 
+/// The statutory declaration that the thesis was written without improper help. The text is not
+/// part of the template so that it can be adapted according to one's needs. Example texts are given
+/// in the template. Heading and signature lines for each author are inserted automatically.
+///
+/// - signature-height (length): The height of the signature line. The default should be able to fit
+///   up to seven authors on one page; for larger teams, the height can be decreased.
+/// - body (content): The actual declaration.
+/// -> content
 #let declaration(
   signature-height: 1.1cm,
   body,
@@ -367,6 +405,13 @@
   #chapter-end()
 ]
 
+/// An abstract section. This should appear twice in the thesis; first for the German _Kurzfassung_,
+/// then for the English abstract.
+///
+/// - lang (string): The language of this abstract. Although it defaults to ```typc auto```, in
+///   which case the document's language is used, it's preferable to always set the language
+///   explicitly.
+/// - body (content): The abstract text.
 #let abstract(lang: auto, body) = [
   #set text(lang: lang) if lang != auto
 
@@ -379,6 +424,11 @@
   #chapter-end()
 ]
 
+/// Starts the main matter of the thesis. This should be called as a show rule (```typ #show: main-matter()```) after the abstracts and will insert
+/// the table of contents. All subsequent top level headings will be treated as chapters and thus be
+/// numbered and outlined.
+///
+/// -> function
 #let main-matter() = body => {
   [= #l10n.contents <contents>]
   outline(title: none)

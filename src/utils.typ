@@ -1,3 +1,9 @@
+/// *Internal function.* Returns whether the current page is one where a chapter begins. This is
+/// used for styling headers and footers.
+///
+/// This function is contextual.
+///
+/// -> bool
 #let is-chapter-page() = {
   // all chapter headings
   let chapters = query(heading.where(level: 1))
@@ -9,8 +15,20 @@
 // - https://github.com/typst/typst/issues/2722
 // - https://github.com/typst/typst/issues/4438
 // it requires manual insertion of `#chapter-end()` at the end of each chapter
+
 #let _chapter_end = <thesis-chapter-end>
+/// Inserts an invisible marker that marks the end of a chapter. This is used for determining
+/// whether a page is empty and thus whether it should have header and footer.
+///
+/// -> content
 #let chapter-end() = [#metadata(none) #_chapter_end]
+/// *Internal function.* Returns whether the current page is empty. This is determined by checking
+/// whether the current page is between the previous chapter's end and the next chapter's beginning.
+/// This is used for styling headers and footers.
+///
+/// This function is contextual.
+///
+/// -> bool
 #let is-empty-page() = {
   // page where the next chapter begins
   let next-chapter = {
@@ -41,6 +59,13 @@
   current-chapter-end < p and p < next-chapter
 }
 
+/// *Internal function.* Checks whether all chapters and chapter ends are placed properly. The
+/// document should contain an alternating sequence of chapters and chapter ends; if a chapter
+/// doesn't have an end or vice-versa, this can lead to wrongly displayed/hidden headers and footers.
+///
+/// The result of this function is invisible if it succeeds.
+///
+/// -> content
 #let enforce-chapter-end-placement() = context {
   let ch-sel = heading.where(level: 1)
   let end-sel = selector(_chapter_end)
@@ -110,6 +135,12 @@
   // if we get here, there are no more chapters and all chapters were terminated
 }
 
+/// *Internal function.* This is intended to be called in a section show rule. It returns whether
+/// that section is the first in the current chapter
+///
+/// This function is contextual.
+///
+/// -> bool
 #let is-first-section() = {
   // all previous headings
   let prev = query(selector(heading).before(here(), inclusive: false))
@@ -121,13 +152,13 @@
 // https://github.com/EpicEricEE/typst-plugins/blob/b13b0e1bc30beba65ff19d029e2dad61239a2819/outex/src/outex.typ#L1-L27
 // Copyright (c) 2023 Eric Biedert, MIT License
 
-// Repeat the given content to fill the full space.
-//
-// Parameters:
-// - gap: The gap between repeated items. (Default: none)
-// - justify: Whether to increase the gap to justify the items. (Default: false)
-//
-// Returns: The repeated content.
+/// Repeat the given content to fill the full space. In contrast to the built-in ```typc repeat()```
+/// function, this can produce exact and aligned gaps.
+///
+/// - gap (length, none): The gap between repeated items.
+/// - justify (bool): Whether to increase the gap to justify the items.
+/// - body (content): the content to repeat
+/// -> content
 #let repeat(
   gap: none,
   justify: false,

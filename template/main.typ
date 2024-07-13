@@ -20,7 +20,7 @@
   bibliography: bibliography("bibliography.bib"),
 
   // language: "en",
-  // strict-chapter-end: false,
+  // strict-chapter-end: true,
 )
 
 #include "glossaries.typ"

@@ -2,6 +2,12 @@
 
 #let _glossary_entry = <thesis-glossary-entry>
 
+/// Stores a glossary entry for this thesis.
+///
+/// - key (string): The key with which the glossary entry can be referenced.
+/// - short (string): The short form of the entry -- mandatory.
+/// - long (string): The long form of the entry.
+/// -> content
 #let glossary-entry(
   key,
   short: none,
@@ -31,6 +37,11 @@
   [#metadata(entry) #_glossary_entry]
 }
 
+/// Displays a glossary of the entries added via @@glossary-entry().
+///
+/// - title (content): A (level 1) heading that titles this glossary. If the glossary is empty, the
+///   title is not shown.
+/// - ..args (arguments): Any extra parameters to the glossarium function of the same name.
 #let print-glossary(title: none, ..args) = context {
   let entries = query(_glossary_entry).map(e => e.value)
 

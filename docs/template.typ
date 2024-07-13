@@ -81,7 +81,7 @@
   v(10em)
 
   // Outline.
-  pad(x: 10%, outline(depth: 1))
+  pad(x: 10%, outline(depth: 2))
   pagebreak()
 
 
