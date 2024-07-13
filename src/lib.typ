@@ -63,9 +63,15 @@
       measure([#sym.space.med#p]).width
     }))
 
-    [#it.body ]
-    box(width: 1fr, align(right, utils.repeat(gap: 3pt)[.]))
-    box(width: max-page-width, align(right, it.page))
+    link(it.element.location(), {
+      [#it.body ]
+      if it.level != 1 {
+        box(width: 1fr, align(right, utils.repeat(gap: 3pt)[.]))
+      } else {
+        h(1fr)
+      }
+      box(width: max-page-width, align(right, it.page))
+    })
   }
   // level 1 headings get a bit of spacing
   show outline.entry.where(level: 1): it => {
