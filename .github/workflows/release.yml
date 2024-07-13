@@ -49,7 +49,7 @@ jobs:
 
       - name: Build package
         run: |
-          just doc
+          just install-preview doc
           just package out
 
       - name: Checkout package registry

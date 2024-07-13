@@ -50,7 +50,7 @@ jobs:
           typst-version: ${{ matrix.typst-version }}
 
       - name: Run test suite
-        run: just test
+        run: just install-preview test
 
       - name: Build docs
         if: ${{ matrix.doc }}
