@@ -7,7 +7,7 @@
 
 #let package-meta = toml("/typst.toml").package
 #let date = none
-// #let date = datetime(year: ..., month: ..., day: ...)
+#let date = datetime(year: 2024, month: 7, day: 13)
 
 #show: project.with(
   title: "TGM HIT diploma thesis template",
