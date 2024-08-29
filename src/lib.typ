@@ -61,6 +61,7 @@
   import "@preview/datify:0.1.2"
   import "@preview/hydra:0.4.0": hydra, anchor
   import "@preview/i-figured:0.2.4"
+  import "@preview/outrageous:0.1.0"
 
   // basic document & typesetting setup
   set document(
@@ -96,30 +97,12 @@
 
   // outline style
   set outline(indent: auto)
-  // aligned and less dense dots
-  show outline.entry: it => context {
-    let max-page-width = calc.max(..range(1, counter(page).final().first()).map(p => {
-      measure([#sym.space.med#p]).width
-    }))
-
-    link(it.element.location(), {
-      [#it.body ]
-      if it.level != 1 {
-        box(width: 1fr, align(right, utils.repeat(gap: 3pt)[.]))
-      } else {
-        h(1fr)
-      }
-      box(width: max-page-width, align(right, it.page))
-    })
-  }
-  // level 1 headings get a bit of spacing
-  show outline.entry.where(level: 1): it => {
-    if type(it.element) != content or it.element.func() != heading { return it }
-
-    set text(weight: "bold")
-    v(1.3em, weak: true)
-    it
-  }
+  show outline.entry: outrageous.show-entry.with(
+    font: (auto,),
+    vspace: (1.3em, none),
+    fill: (none, box(width: 1fr, align(right, utils.repeat(gap: 3pt)[.]))),
+    fill-right-pad: .2cm,
+  )
 
   // general styles
 
