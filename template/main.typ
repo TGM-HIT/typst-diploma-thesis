@@ -20,6 +20,7 @@
   bibliography: bibliography("bibliography.bib"),
 
   // language: "en",
+  // current-authors: "only",
   // strict-chapter-end: true,
 )
 

@@ -73,6 +73,14 @@ Relevante Dokumentation:
 
 - #highlighted-link("https://typst.app/universe/package/glossarium/0.4.1/")[das Glossarium-Paket]
 
+#set-current-authors("Arthur Dent", "Tricia McMillan")
+
+== Autorenschaft innerhalb des Dokuments
+
+Innerhalb der Diplomarbeit ist es notwendig, dass die Individuelle Autorenschaft der einzelnen Teile nachvollzogen werden kann. Üblich ist dafür, dass die Autoren in der Fußzeile angegeben werden. In dieser Vorlage kann aus zwei Modi gewählt werden: ```typc current-authors: "highlight"``` zeigt alle Autoren in der Fußzeile an, druckt aber die aktuellen Autoren fett; ```typc current-authors: "only"``` zeigt nur die aktuellen Autoren in der Fußzeile an.
+
+Vor diesem Abschnitt wurden die Autoren auf _Arthur Dent_ und _Tricia McMillan_ gesetzt (siehe den Quellcode dieses Kapitels), deshalb sind diese ab dieser Seite fett gedruckt.
+
 == Abbildungen und Gleichungen
 
 Abbildungen, Tabellen, Codestücke und ähnlich eigenständige Inhalte werden oft verwendet, um den Fließtext zu komplementieren. In den vorangegangenen Abschnitten wurden bereits zwei _Auflistungen_, also Codestücke, verwendet. Abbildungen sollten normalerweise im Fließtext referenziert werden, damit die inhaltliche Relevanz explizit klar ist. Zum Beispiel könnte mittels ```typ @fig:picture``` auf die in @lst:figure-definition gezeigte Abbildung verwiesen werden. Die Verweise in diesem Abschnitt benutzen genau diesen Mechanismus, in der PDF-Version der Arbeit sind diese Verweise funktionierende Links. Der Präfix `fig:` wurde dabei durch das _i-figured_-Paket eingefügt und anhand die Art des Inhalts bestimmt, siehe @tbl:figure-kinds. Dieses Paket bewirkt auch, dass Abbildungen nicht durchlaufend nummeriert sind, sondern kapitelweise.

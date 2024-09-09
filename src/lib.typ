@@ -6,6 +6,7 @@
 #let _builtin_bibliography = bibliography
 
 #let _authors = state("thesis-authors")
+#let _current_authors = state("thesis-current-authors", ())
 
 #import utils: chapter-end
 #import glossary: glossary-entry, gls, glspl
@@ -35,6 +36,9 @@
 /// - language (string): The language in which the thesis is written. `"de"` and `"en"` are
 ///   supported. The choice of language influences certain texts on the title page and in headings,
 ///   as well as the date format used on the title page.
+/// - current-authors (string): The mode used to show the current authors in the footer; see
+///   @@set-current-authors(). This can be `highlight` (all authors are shown, some *strong*) or
+///   `only` (only the current authors are shown).
 /// - paper (string): Changes the paper format of the thesis. Use this option with care, as it will
 ///   shift various contents around.
 /// - strict-chapter-end (bool): This can be activated to ensure proper use of the
@@ -54,6 +58,7 @@
   bibliography: none,
 
   language: "de",
+  current-authors: "highlight",
   paper: "a4",
   strict-chapter-end: false,
 ) = body => {
@@ -62,6 +67,8 @@
   import "@preview/hydra:0.4.0": hydra, anchor
   import "@preview/i-figured:0.2.4"
   import "@preview/outrageous:0.1.0"
+
+  assert(current-authors in ("highlight", "only"))
 
   // basic document & typesetting setup
   set document(
@@ -257,7 +264,25 @@
             grid(
               columns: (5fr, 1fr),
               align: (left+bottom, right+bottom),
-              authors.map(author => box(author.name)).join[, ],
+              if current-authors == "highlight" {
+                authors.map(author => {
+                  let is-current = author.name in _current_authors.get()
+                  let author = author.name
+                  if is-current {
+                    author = strong(author)
+                  }
+                  box(author)
+                }).join[, ]
+              } else if current-authors == "only" {
+                authors.filter(author => {
+                  author.name in _current_authors.get()
+                }).map(author => {
+                  let author = author.name
+                  box(author)
+                }).join[, ]
+              } else {
+                panic("unreachable: current-authors not 'highlight' or 'only'")
+              },
               counter(page).display("1 / 1", both: true),
             )
           },
@@ -392,6 +417,24 @@
 
   #chapter-end()
 ]
+
+/// Set the authors writing the current part of the thesis. The footer will highlight the names of
+/// the given authors until a new list of authors is given with this function.
+///
+/// - ..authors (arguments): the names of the authors to highlight
+/// -> content
+#let set-current-authors(..authors) = {
+  assert(authors.named().len() == 0, message: "named arguments not allowed")
+  let authors = authors.pos()
+  context {
+    let names = _authors.get().map(author => author.name)
+    for author in authors {
+      assert(author in names, message: "invalid author: " + author)
+    }
+  }
+
+  _current_authors.update(authors)
+}
 
 /// An abstract section. This should appear twice in the thesis regardless of language; first for
 /// the German _Kurzfassung_, then for the English abstract.
