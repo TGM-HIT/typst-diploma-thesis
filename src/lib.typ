@@ -66,7 +66,7 @@
   import "@preview/datify:0.1.2"
   import "@preview/hydra:0.4.0": hydra, anchor
   import "@preview/i-figured:0.2.4"
-  import "@preview/outrageous:0.1.0"
+  import "@preview/outrageous:0.2.0"
 
   assert(current-authors in ("highlight", "only"))
 
@@ -106,9 +106,6 @@
   set outline(indent: auto)
   show outline.entry: outrageous.show-entry.with(
     font: (auto,),
-    vspace: (1.3em, none),
-    fill: (none, box(width: 1fr, align(right, utils.repeat(gap: 3pt)[.]))),
-    fill-right-pad: .2cm,
   )
 
   // general styles

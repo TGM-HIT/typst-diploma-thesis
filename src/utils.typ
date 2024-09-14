@@ -114,35 +114,3 @@
   // returns whether the previous heading is a chapter heading
   prev.len() != 0 and prev.last().level == 1
 }
-
-// the following function is from
-// https://github.com/EpicEricEE/typst-plugins/blob/b13b0e1bc30beba65ff19d029e2dad61239a2819/outex/src/outex.typ#L1-L27
-// Copyright (c) 2023 Eric Biedert, MIT License
-
-/// Repeat the given content to fill the full space. In contrast to the built-in ```typc repeat()```
-/// function, this can produce exact and aligned gaps.
-///
-/// - gap (length, none): The gap between repeated items.
-/// - justify (bool): Whether to increase the gap to justify the items.
-/// - body (content): the content to repeat
-/// -> content
-#let repeat(
-  gap: none,
-  justify: false,
-  body
-) = layout(size => style(styles => {
-  let pt(length) = measure(h(length), styles).width
-  let width = measure(body, styles).width
-  let amount = calc.floor(pt(size.width + gap) / pt(width + gap))
-
-  let gap = if not justify { gap } else {
-    (size.width - amount * width) / (amount - 1)
-  }
-
-  let items = ((box(body),) * amount)
-  if type(gap) == length and gap != 0pt {
-    items = items.intersperse(h(gap))
-  }
-
-  items.join()
-}))
