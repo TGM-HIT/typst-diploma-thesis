@@ -8,7 +8,7 @@ env:
   # usually a fork of typst/packages (https://github.com/typst/packages/)
   # that you have push privileges to
   # NOTE: this is Clemens Koza's repo; may be replaced with a TGM-HIT organization fork in the future
-  REGISTRY_REPO: SillyFreak/typst-package-registry
+  REGISTRY_REPO: SillyFreak/typst-packages
   # the path within that repo where the "<name>/<version>" directory should be put
   # for the Typst package registry, keep this as is
   PATH_PREFIX: packages/preview
@@ -47,9 +47,12 @@ jobs:
             exit 1
           fi
 
+      - name: Install package locally
+        run: just install-preview
+
       - name: Build package
         run: |
-          just install-preview doc
+          just doc
           just package out
 
       - name: Checkout package registry

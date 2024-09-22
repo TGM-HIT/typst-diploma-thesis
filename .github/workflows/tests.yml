@@ -49,8 +49,22 @@ jobs:
         with:
           typst-version: ${{ matrix.typst-version }}
 
+      - name: Install package locally
+        run: just install-preview
+
       - name: Run test suite
-        run: just install-preview test
+        run: just test
+
+      - name: Archive diffs
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: diffs
+          path: |
+            tests/**/diff/*.png
+            tests/**/out/*.png
+            tests/**/ref/*.png
+          retention-days: 5
 
       - name: Build docs
         if: ${{ matrix.doc }}
