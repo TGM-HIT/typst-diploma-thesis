@@ -4,6 +4,8 @@
   title: [Keine Panik!],
   subtitle: [Mit Typst durch die Diplomarbeit],
   authors: (
+    // ATTENTION: chapters/vorwort.typ:76 references this list of example authors. When changing
+    // this list, you need to adjust/remove that line!
     (name: "Arthur Dent", class: [5xHIT], subtitle: [Untertitel des Themengebiets von Arthur Dent]),
     (name: "Ford Prefect", class: [5xHIT], subtitle: [Untertitel des Themengebiets von Ford Prefect]),
     (name: "Tricia McMillan", class: [5xHIT], subtitle: [Untertitel des Themengebiets von Tricia McMillan]),
