@@ -2,7 +2,7 @@
 #import "/src/lib.typ" as tgm-hit-thesis
 
 #let package-meta = toml("/typst.toml").package
-#let date = datetime(year: 2024, month: 9, day: 14)
+#let date = datetime(year: 2024, month: 10, day: 23)
 
 #show: manual(
   title: "TGM HIT diploma thesis template",
