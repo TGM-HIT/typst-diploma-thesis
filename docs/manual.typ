@@ -1,15 +1,10 @@
-#import "@preview/tidy:0.3.0"
-#import "@preview/crudo:0.1.0"
-
-#import "template.typ": *
-
-#import "/src/lib.typ" as template
+#import "template.typ" as template: *
+#import "/src/lib.typ" as tgm-hit-thesis
 
 #let package-meta = toml("/typst.toml").package
-#let date = none
 #let date = datetime(year: 2024, month: 9, day: 14)
 
-#show: project.with(
+#show: manual(
   title: "TGM HIT diploma thesis template",
   // subtitle: "...",
   authors: package-meta.authors.map(a => a.split("<").at(0).trim()),
@@ -22,7 +17,7 @@
 )
 
 // the scope for evaluating expressions and documentation
-#let scope = (template: template)
+#let scope = (tgm-hit-thesis: tgm-hit-thesis)
 
 = Introduction
 
@@ -51,83 +46,58 @@ As a school-specific template, this package does not offer enough configurabilit
 
 The template's main module. All functions that need to be called are directly exported from this module.
 
-#{
-  let module = tidy.parse-module(
-    read("/src/lib.typ"),
-    // label-prefix: "tgm-hit-thesis.",
-    scope: scope,
-  )
-  tidy.show-module(
-    module,
-    sort-functions: none,
-    style: tidy.styles.minimal,
-  )
-}
+#module(
+  read("/src/lib.typ"),
+  name: "tgm-hit-thesis",
+  label-prefix: none,
+  scope: scope,
+  show-module-name: false,
+)
 
 == `tgm-hit-thesis.utils`
 
 Utilities, mostly internal. The #ref-fn("chapter-end()") function is re-exported from the main module.
 
-#{
-  let module = tidy.parse-module(
-    read("/src/utils.typ"),
-    // label-prefix: "tgm-hit-thesis.utils.",
-    scope: scope,
-  )
-  tidy.show-module(
-    module,
-    sort-functions: none,
-    style: tidy.styles.minimal,
-  )
-}
+#module(
+  read("/src/utils.typ"),
+  name: "tgm-hit-thesis.utils",
+  label-prefix: none,
+  scope: scope,
+  show-module-name: false,
+)
 
 == `tgm-hit-thesis.glossary`
 
 Wrappers for #link("https://typst.app/universe/package/glossarium")[Glossarium] functionality. The #ref-fn("glossary-entry()") function and Glossarium's ```typc gls()``` and ```typc glspl()``` are re-exported from the main module.
 
-#{
-  let module = tidy.parse-module(
-    read("/src/glossary.typ"),
-    // label-prefix: "tgm-hit-thesis.glossary.",
-    scope: scope,
-  )
-  tidy.show-module(
-    module,
-    sort-functions: none,
-    style: tidy.styles.minimal,
-  )
-}
+#module(
+  read("/src/glossary.typ"),
+  name: "tgm-hit-thesis.glossary",
+  label-prefix: none,
+  scope: scope,
+  show-module-name: false,
+)
 
 == `tgm-hit-thesis.l10n`
 
 Contains contextual constants that display localized strings. This is a thin wrapper around #link("https://typst.app/universe/package/linguify")[linguify] that improves autocomplete and avoids typos in Typst code. Have a look at the source code to see what definitions are available.
 
-#{
-  let module = tidy.parse-module(
-    read("/src/l10n.typ"),
-    // label-prefix: "tgm-hit-thesis.l10n.",
-    scope: scope,
-  )
-  tidy.show-module(
-    module,
-    sort-functions: none,
-    style: tidy.styles.minimal,
-  )
-}
+#module(
+  read("/src/l10n.typ"),
+  name: "tgm-hit-thesis.l10n",
+  label-prefix: none,
+  scope: scope,
+  show-module-name: false,
+)
 
 == `tgm-hit-thesis.assets`
 
 Contains images used in the template.
 
-#{
-  let module = tidy.parse-module(
-    read("/src/assets/mod.typ"),
-    // label-prefix: "tgm-hit-thesis.assets.",
-    scope: scope,
-  )
-  tidy.show-module(
-    module,
-    sort-functions: none,
-    style: tidy.styles.minimal,
-  )
-}
+#module(
+  read("/src/assets/mod.typ"),
+  name: "tgm-hit-thesis.assets",
+  label-prefix: none,
+  scope: scope,
+  show-module-name: false,
+)
