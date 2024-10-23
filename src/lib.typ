@@ -9,7 +9,7 @@
 #let _current_authors = state("thesis-current-authors", ())
 
 #import utils: chapter-end
-#import glossary: glossary-entry, gls, glspl
+#import glossary: register-glossary, glossary-entry, gls, glspl
 
 /// The main template function. Your document will generally start with ```typ #show: thesis(...)```,
 /// which it already does after initializing the template. Although all parameters are named, most
@@ -62,11 +62,11 @@
   paper: "a4",
   strict-chapter-end: false,
 ) = body => {
-  import "@preview/codly:0.2.0": codly, codly-init
+  import "@preview/codly:1.0.0": codly, codly-init
   import "@preview/datify:0.1.2"
   import "@preview/hydra:0.4.0": hydra, anchor
   import "@preview/i-figured:0.2.4"
-  import "@preview/outrageous:0.2.0"
+  import "@preview/outrageous:0.3.0"
 
   assert(current-authors in ("highlight", "only"))
 
@@ -99,8 +99,7 @@
 
   // setup codly & listing styles
   show: codly-init.with()
-  codly(padding: 0.3em)
-  show figure.where(kind: raw): set block(width: 95%)
+  show figure.where(kind: raw): block.with(width: 95%)
 
   // outline style
   set outline(indent: auto)
