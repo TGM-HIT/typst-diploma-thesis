@@ -227,17 +227,22 @@
           1,
           prev-filter: (ctx, candidates) => candidates.primary.prev.outlined == true,
           display: (ctx, candidate) => {
-            title
-            h(1fr)
-
-            if candidate.has("numbering") and candidate.numbering != none {
-              l10n.chapter
-              [ ]
-              numbering(candidate.numbering, ..counter(heading).at(candidate.location()))
-              [. ]
-            }
-            candidate.body
-
+            grid(
+              columns: (auto, 1fr),
+              column-gutter: 3em,
+              align: (left+top, right+top),
+              title,
+              {
+                set par(justify: false)
+                if candidate.has("numbering") and candidate.numbering != none {
+                  l10n.chapter
+                  [ ]
+                  numbering(candidate.numbering, ..counter(heading).at(candidate.location()))
+                  [. ]
+                }
+                candidate.body
+              }
+            )
             line(length: 100%)
           },
         )
