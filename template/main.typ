@@ -47,28 +47,17 @@
 #show: main-matter()
 
 #include "chapters/vorwort.typ"
-// in the main-matter, currently all chapters need to have an explicit `#chapter-end()` to ensure
-// correct headers and footers. This can hopefully be removed in the future
-// (see https://github.com/typst/typst/issues/2722, https://github.com/typst/typst/issues/4438)
-#chapter-end()
 
 #include "chapters/danksagung.typ"
-#chapter-end()
 
 #include "chapters/einleitung.typ"
-#chapter-end()
 
 #include "chapters/studie.typ"
-#chapter-end()
 
 #include "chapters/konzept.typ"
-#chapter-end()
 
 #include "chapters/implementierung.typ"
-#chapter-end()
 
 #include "chapters/retrospektive.typ"
-#chapter-end()
 
 #include "chapters/conclusio.typ"
-#chapter-end()

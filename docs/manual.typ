@@ -56,7 +56,7 @@ The template's main module. All functions that need to be called are directly ex
 
 == `tgm-hit-thesis.utils`
 
-Utilities, mostly internal. The #ref-fn("chapter-end()") function is re-exported from the main module.
+Utilities, mostly internal.
 
 #module(
   read("/src/utils.typ"),
