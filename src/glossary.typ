@@ -12,24 +12,28 @@
 /// Stores a glossary entry for this thesis. One call to this function is equivalent to one array
 /// entry in Glossarium's ```typc print-glossary()```'s main parameter.
 ///
-/// - key (string): The key with which the glossary entry can be referenced; must be unique.
-/// - short (string): Mandatory; the short form of the entry shown after the term has been first
-///   defined.
-/// - long (string): The long form of the entry.
-/// - long (string, content): The long form of the term, displayed in the glossary and on the first
-///   citation of the term.
-/// - desc (string, content): The description of the term.
-/// - plural (string, content): The pluralized short form of the term.
-/// - longplural (string, content): The pluralized long form of the term.
-/// - group (string): The group the term belongs to. The terms are displayed by groups in the glossary.
 /// -> content
 #let glossary-entry(
+  /// The key with which the glossary entry can be referenced; must be unique.
+  /// -> string
   key,
+  /// Mandatory; the short form of the entry shown after the term has been first defined.
+  /// -> string
   short: none,
+  /// The long form of the term, displayed in the glossary and on the first citation of the term.
+  /// -> string | content
   long: none,
+  /// The description of the term.
+  /// -> string | content
   desc: none,
+  /// The pluralized short form of the term.
+  /// -> string | content
   plural: none,
+  /// The pluralized long form of the term.
+  /// -> string | content
   longplural: none,
+  /// The group the term belongs to. The terms are displayed by groups in the glossary.
+  /// -> string
   group: none,
 ) = {
   assert(short != none, message: "short form of glossary-entry is mandatory")
@@ -54,10 +58,15 @@
 
 /// Displays a glossary of the entries added via @@glossary-entry().
 ///
-/// - title (content): A (level 1) heading that titles this glossary. If the glossary is empty, the
-///   title is not shown.
-/// - ..args (arguments): Any extra parameters to the glossarium function of the same name.
-#let print-glossary(title: none, ..args) = context {
+/// -> content
+#let print-glossary(
+  /// A (level 1) heading that titles this glossary. If the glossary is empty, the title is not shown.
+  /// -> content
+  title: none,
+  /// Any extra parameters to the glossarium function of the same name.
+  /// -> arguments
+  ..args,
+) = context {
   let entries = _glossary_entries.get()
 
   // let any-references = entries.any(e => {

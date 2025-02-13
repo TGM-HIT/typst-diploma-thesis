@@ -15,46 +15,47 @@
 /// of them are really mandatory. Parameters that are not given may result in missing content in
 /// places where it is not actually optional.
 ///
-/// - title (content, string): The title of the thesis, displayed on the title page and used for PDF
-///   metadata.
-/// - subtitle (content, string): A descriptive one-liner that gives the reader an immediate idea
-///   about the thesis' topic.
-/// - authors (array): The thesis authors. Each array entry is a `dict` of the form
-///   `(name: ..., class: ..., subtitle: ...)` stating their name, class, and the title of their
-///   part of the whole thesis project. The names must be regular strings, for the PDF metadata.
-/// - supervisor-label (content, string, auto): The term with which to label the supervisor name;
-///   if not given or `auto`, this defaults to a language-dependent text. In German, this text is
-///   gender-specific and can be overridden with this parameter.
-/// - supervisor (content, string): The name of the thesis' supervisor.
-/// - date (datetime): The date of submission of the thesis.
-/// - year (content, string): The school year in which the thesis was produced.
-/// - division (content, string): The division inside the HIT department (i.e. usually
-///   "Medientechnik" or "Systemtechnik").
-/// - logo (content): The image (```typc image()```) to use as the document's logo on the title page.
-/// - bibliography (content): The bibliography (```typc bibliography()```) to use for the thesis.
-/// - language (string): The language in which the thesis is written. `"de"` and `"en"` are
-///   supported. The choice of language influences certain texts on the title page and in headings,
-///   as well as the date format used on the title page.
-/// - current-authors (string): The mode used to show the current authors in the footer; see
-///   @@set-current-authors(). This can be `highlight` (all authors are shown, some *strong*) or
-///   `only` (only the current authors are shown).
-/// - paper (string): Changes the paper format of the thesis. Use this option with care, as it will
-///   shift various contents around.
 /// -> function
 #let thesis(
+  /// The title of the thesis, displayed on the title page and used for PDF metadata.
+  /// -> content | string
   title: none,
+  /// A descriptive one-liner that gives the reader an immediate idea about the thesis' topic.
+  /// -> content | string
   subtitle: none,
+  /// The thesis authors. Each array entry is a `dict` of the form `(name: ..., class: ..., subtitle: ...)` stating their name, class, and the title of their part of the whole thesis project. The names must be regular strings, for the PDF metadata.
+  /// -> array
   authors: (),
+  /// The term with which to label the supervisor name; if not given or `auto`, this defaults to a language-dependent text. In German, this text is gender-specific and can be overridden with this parameter.
+  /// -> content | string | auto
   supervisor-label: auto,
+  /// The name of the thesis' supervisor.
+  /// -> content | string
   supervisor: none,
+  /// The date of submission of the thesis.
+  /// -> datetime
   date: none,
+  /// The school year in which the thesis was produced.
+  /// -> content | string
   year: none,
+  /// The division inside the HIT department (i.e. usually "Medientechnik" or "Systemtechnik").
+  /// -> content | string
   division: none,
+  /// The image (```typc image()```) to use as the document's logo on the title page.
+  /// -> content
   logo: none,
+  /// The bibliography (```typc bibliography()```) to use for the thesis.
+  /// -> content
   bibliography: none,
 
+  /// The language in which the thesis is written. `"de"` and `"en"` are supported. The choice of language influences certain texts on the title page and in headings, as well as the date format used on the title page.
+  /// -> string
   language: "de",
+  /// The mode used to show the current authors in the footer; see @@set-current-authors(). This can be `highlight` (all authors are shown, some *strong*) or `only` (only the current authors are shown).
+  /// -> string
   current-authors: "highlight",
+  /// Changes the paper format of the thesis. Use this option with care, as it will shift various contents around.
+  /// -> string
   paper: "a4",
   strict-chapter-end: false,
 ) = body => {
@@ -373,12 +374,13 @@
 /// part of the template so that it can be adapted according to one's needs. Example texts are given
 /// in the template. Heading and signature lines for each author are inserted automatically.
 ///
-/// - signature-height (length): The height of the signature line. The default should be able to fit
-///   up to seven authors on one page; for larger teams, the height can be decreased.
-/// - body (content): The actual declaration.
 /// -> content
 #let declaration(
+  /// The height of the signature line. The default should be able to fit up to seven authors on one page; for larger teams, the height can be decreased.
+  /// -> length
   signature-height: 1.1cm,
+  /// The actual declaration.
+  /// -> content
   body,
 ) = [
   #let caption-spacing = -0.2cm
@@ -414,9 +416,12 @@
 /// Set the authors writing the current part of the thesis. The footer will highlight the names of
 /// the given authors until a new list of authors is given with this function.
 ///
-/// - ..authors (arguments): the names of the authors to highlight
 /// -> content
-#let set-current-authors(..authors) = {
+#let set-current-authors(
+  /// the names of the authors to highlight
+  /// -> arguments
+  ..authors,
+) = {
   assert(authors.named().len() == 0, message: "named arguments not allowed")
   let authors = authors.pos()
   context {
@@ -432,11 +437,15 @@
 /// An abstract section. This should appear twice in the thesis regardless of language; first for
 /// the German _Kurzfassung_, then for the English abstract.
 ///
-/// - lang (string): The language of this abstract. Although it defaults to ```typc auto```, in
-///   which case the document's language is used, it's preferable to always set the language
-///   explicitly.
-/// - body (content): The abstract text.
-#let abstract(lang: auto, body) = [
+/// -> content
+#let abstract(
+  /// The language of this abstract. Although it defaults to ```typc auto```, in which case the document's language is used, it's preferable to always set the language explicitly.
+  /// -> string
+  lang: auto,
+  /// The abstract text.
+  /// -> content
+  body,
+) = [
   #set text(lang: lang) if lang != auto
 
   #context [
