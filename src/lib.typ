@@ -59,8 +59,8 @@
   paper: "a4",
   strict-chapter-end: false,
 ) = body => {
-  import "@preview/codly:1.0.0": codly, codly-init
-  import "@preview/datify:0.1.2"
+  import "@preview/codly:1.2.0": codly, codly-init
+  import "@preview/datify:0.1.3"
   import "@preview/hydra:0.4.0": hydra, anchor
   import "@preview/i-figured:0.2.4"
   import "@preview/outrageous:0.3.0"
@@ -317,14 +317,17 @@
     it
   }
 
-  // setup i-figured
-  show heading: i-figured.reset-counters
-  show figure: i-figured.show-figure
-  show math.equation: i-figured.show-equation
+  // main body with i-figured
+  // scope i-figured to now interact with Glossarium
+  {
+    show heading: i-figured.reset-counters
+    show figure: i-figured.show-figure
+    show math.equation: i-figured.show-equation
 
-  // the body contains the declaration, abstracts, and then the main matter
+    // the body contains the declaration, abstracts, and then the main matter
 
-  body
+    body
+  }
 
   // back matter
 
