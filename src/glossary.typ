@@ -25,7 +25,7 @@
   long: none,
   /// The description of the term.
   /// -> string | content
-  desc: none,
+  description: none,
   /// The pluralized short form of the term.
   /// -> string | content
   plural: none,
@@ -42,7 +42,7 @@
     key: key,
     short: short,
     long: long,
-    desc: desc,
+    description: description,
     plural: plural,
     longplural: longplural,
     group: group,
