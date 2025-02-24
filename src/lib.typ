@@ -61,9 +61,9 @@
 ) = body => {
   import "@preview/codly:1.2.0": codly, codly-init
   import "@preview/datify:0.1.3"
-  import "@preview/hydra:0.4.0": hydra, anchor
+  import "@preview/hydra:0.6.0": hydra, anchor
   import "@preview/i-figured:0.2.4"
-  import "@preview/outrageous:0.3.0"
+  import "@preview/outrageous:0.4.0"
 
   assert(current-authors in ("highlight", "only"))
 
