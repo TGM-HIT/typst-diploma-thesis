@@ -15,7 +15,7 @@ Während der Großteil dieser Vorlage nur die Struktur einer typischen Diplomarb
 
 Das richtige zitieren spielt innerhalb der wissenschaftlichen Arbeit eine wichtige Rolle. Die Verwaltung von Literatur ist bereits in Typst enthalten. Die Datei `bibliography.bib` ist bereits vorgegeben, es kann aber wie in der Dokumentation beschrieben auch das _Hayagriva_-Format verwendet werden.
 
-Als kleines Beispiel findet sich hier nun ein Zitat über Schall, aus dem ersten Phsyik Lehrbuch der Autoren Schweitzer, Svoboda und Trieb.
+Als kleines Beispiel findet sich hier nun ein Zitat über Schall, aus dem ersten Phsyik Lehrbuch der Autoren #cite(<physik1>, form: "author").
 
 #quote(attribution: [@physik1[S. 145]], block: true)[
   "Mechanische Longitudinalwellen werden als Schall bezeichnet. In einem Frequenzbereich von 16 Hz bis 20 kHz sind sie für das menschliche Ohr wahrnehmbar. Liegen die Frequenzen unter diesem Bereich, so bezeichnet man diese Wellen als Infraschall, darüber als Ultraschall."
@@ -41,6 +41,8 @@ In `bibliography.bib` ist die referenzierte Quelle folgendermaßen definiert:
 
 Als allererstes sieht man die ID dieser Quelle, `physik1`, damit lässt sich diese entweder mit ```typ @physik1``` referenzieren, oder mit einer zusätzlichen Detailangabe wie etwa für die Seitenzahl: #box[```typ @physik1[S. 145]```]. Besonders bei direkten Zitaten empfiehlt es sich auch die Seitenzahl anzugeben.
 
+In Fließtext ist es manchmal gewünscht, eine Quelle nicht mit der Nummer im @bibliography anzugeben. Die Angabe der Autoren über dem Zitat wurde zum Beispiel mit ```typ #cite(<physik1>, form: "author")``` generiert.
+
 Nach der Verwendung einer Quelle wird diese auch im @bibliography gelistet, welche sich am Ende des Dokuments befindet. Quellen die nicht referenziert werden, werden nicht angezeigt. Es ist also unproblematisch, großzügig Quellen in `bibliography.bib` aufzunehmen: besser mehr Literatur parat zu haben, als sie dann nachträglich suchen zu müssen.
 
 Relevante Dokumentation:
@@ -49,6 +51,16 @@ Relevante Dokumentation:
 - #highlighted-link("https://typst.app/docs/reference/model/cite/")[```typ @key``` bzw. ```typc cite()```]
 - #highlighted-link("https://www.bibtex.com/g/bibtex-format/")[das BibTeX-Dateiformat]
 - #highlighted-link("https://github.com/typst/hayagriva/blob/main/docs/file-format.md")[das Hayagriva-Dateiformat]
+
+== Promptverzeichnis
+
+Für Diplomarbeiten ist in Österreich ein separates @prompts vorgeschrieben: wenn in der Arbeit KI zur Erstellung von Inhalten verwendet wurde, müssen die dazu eingesetzten Prompts in einem _separaten_ Promptverzeichnis aufgeführt werden. Diese Vorlage ist so eingerichtet, dass die Prompts ebenfalls in der Datei `bibliography.bib` aufgeführt werden, aber durch einen Prefix unterschieden werden: während ```typ @physik1``` eine normale Quelle angibt, wird mit ```typ @prompt:physik1``` ein Prompt referenziert: @prompt:physik1.
+
+Wie man sieht ist dieses Zitat von der gleichen Form wie ein normales, allerdings führt die Verlinkung auf das separate @prompts. Natürlich würden hier abgesehen von dieser Demonstration eben Prompts und keine normale Literatur referenziert werden.
+
+Relevante Dokumentation:
+
+- #highlighted-link("https://typst.app/universe/package/alexandria/0.1.1/")[das Alexandria-Paket]
 
 == Glossar
 
@@ -72,6 +84,8 @@ Das für die Glossar-Funktion im Hintergrund verwendete _Glossarium_-Paket stell
 Relevante Dokumentation:
 
 - #highlighted-link("https://typst.app/universe/package/glossarium/0.4.1/")[das Glossarium-Paket]
+
+#pagebreak(weak: true)
 
 #set-current-authors("Arthur Dent", "Tricia McMillan")
 
@@ -112,9 +126,11 @@ Abbildungen, Tabellen, Codestücke und ähnlich eigenständige Inhalte werden of
   caption: [Arten von Abbildungen und deren Präfixe in _i-figured_],
 ) <figure-kinds>
 
-Es ist in wissenschaftlichen Arbeiten auch üblich, Abbildungen zur besseren Seitennutzung zu verschieben -- normalerweise an den oberen oder unteren Rand einer Seite. In Typst kann dazu ```typc figure(.., placement: auto)``` benutzt werden. Die Abbildungen in diesem Abschnitt benutzen diese Funktionalität: obwohl dieser Absatz im Quelltext nach den Abbildungen kommt, beginnt er vor ihnen und endet erst auf der nächsten Seite, danach. Ob die Ergebnisse der automatischen Platzierung zufriedenstellend sind sollte für die Endversion natürlich nochmal manuell geprüft werden.
+Es ist in wissenschaftlichen Arbeiten auch üblich, Abbildungen zur besseren Seitennutzung zu verschieben -- normalerweise an den oberen oder unteren Rand einer Seite. In Typst kann dazu ```typc figure(.., placement: auto)``` benutzt werden. Die Abbildungen in diesem Abschnitt benutzen diese Funktionalität: obwohl dieser Absatz im Quelltext vor den Abbildungen kommt, wird er vor ihnen angezeigt. Ob die Ergebnisse der automatischen Platzierung zufriedenstellend sind sollte für die Endversion natürlich nochmal manuell geprüft werden.
 
-Mathematische Gleichungen werden gemäß den Konventionen ein bisschen anders dargestellt und haben in Typst außerdem eine eigene Syntax. Die Definition von @eqt:pythagoras kann im Quelltext des Vorworts eingesehen werden:
+#block(sticky: true)[
+  Mathematische Gleichungen werden gemäß den Konventionen ein bisschen anders dargestellt und haben in Typst außerdem eine eigene Syntax. Die Definition von @eqt:pythagoras kann im Quelltext des Vorworts eingesehen werden:
+]
 
 $ a^2 + b^2 = c^2 $ <pythagoras>
 
@@ -137,6 +153,7 @@ Einige Teile der Diplomarbeit sind durch die Vorlage mit Labels versehen und kö
 - #text(lang: "en")[@abstract-en]
 - @contents
 - @bibliography
+- @prompts
 - (#l10n.list-of-figures -- kein Link da in der Vorlage keine "normalen" Abbildungen sind) // @list-of-figures
 - @list-of-tables
 - @list-of-listings

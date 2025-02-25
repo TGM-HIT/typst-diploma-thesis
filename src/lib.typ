@@ -1,9 +1,8 @@
 #import "assets.typ"
 #import "l10n.typ"
 #import "glossary.typ"
+#import "prompts.typ"
 #import "utils.typ"
-
-#let _builtin_bibliography = bibliography
 
 #let _authors = state("thesis-authors")
 #let _current_authors = state("thesis-current-authors", ())
@@ -47,6 +46,9 @@
   /// The bibliography (```typc bibliography()```) to use for the thesis.
   /// -> content
   bibliography: none,
+  /// The prompt bibliography (```typc prompts.bibliography()```) to use for the thesis.
+  /// -> content
+  prompts: none,
 
   /// The language in which the thesis is written. `"de"` and `"en"` are supported. The choice of language influences certain texts on the title page and in headings, as well as the date format used on the title page.
   /// -> string
@@ -59,6 +61,7 @@
   paper: "a4",
   strict-chapter-end: false,
 ) = body => {
+  import "@preview/alexandria:0.1.1"
   import "@preview/codly:1.2.0": codly, codly-init
   import "@preview/datify:0.1.3"
   import "@preview/hydra:0.6.0": hydra, anchor
@@ -70,7 +73,7 @@
   assert(not strict-chapter-end, message: {
     "`chapter-end` is no longer needed; "
     "please remove any use of `chapter-end` and the `strict-chapter-end` parameter"
-})
+  })
 
   // basic document & typesetting setup
   set document(
@@ -339,12 +342,20 @@
   }
 
   // bibliography is outlined, and we use our own header for the label
-  {
-    set _builtin_bibliography(title: none)
+  if bibliography != none {
+    set std.bibliography(title: none)
     set heading(outlined: true)
 
     [= #l10n.bibliography <bibliography>]
     bibliography
+  }
+
+  // bibliography is outlined, and we use our own header for the label
+  if prompts != none {
+    set heading(outlined: true)
+
+    [= #l10n.prompts <prompts>]
+    prompts
   }
 
   // List of {Figures, Tables, Listings} only shown if there are any such elements

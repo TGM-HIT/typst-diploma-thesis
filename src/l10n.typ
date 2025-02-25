@@ -26,6 +26,7 @@
 
 #let contents = linguify("contents")
 #let bibliography = linguify("bibliography")
+#let prompts = linguify("prompts")
 #let list-of-figures = linguify("list-of-figures")
 #let list-of-tables = linguify("list-of-tables")
 #let list-of-listings = linguify("list-of-listings")

@@ -1,5 +1,6 @@
 #import "lib.typ": *
 
+#show: prompts.setup(read: path => read(path))
 #show: thesis(
   title: [Keine Panik!],
   subtitle: [Mit Typst durch die Diplomarbeit],
@@ -20,6 +21,7 @@
   division: [Medientechnik, Systemtechnik],
   logo: assets.logo(width: 3cm),
   bibliography: bibliography("bibliography.bib"),
+  prompts: prompts.bibliography("bibliography.bib"),
 
   // language: "en",
   // current-authors: "only",
