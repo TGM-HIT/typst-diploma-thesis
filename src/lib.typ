@@ -1,7 +1,7 @@
 #import "assets.typ"
 #import "l10n.typ"
 #import "glossary.typ"
-#import "prompts.typ"
+#import "bib.typ" as bib: bibliography
 #import "utils.typ"
 
 #let _authors = state("thesis-authors")
@@ -43,12 +43,13 @@
   /// The image (```typc image()```) to use as the document's logo on the title page.
   /// -> content
   logo: none,
-  /// The bibliography (```typc bibliography()```) to use for the thesis.
+  /// pass ```typc path => read(path)``` into this parameter so that Alexandria can read your
+  /// bibliography files.
+  /// -> function
+  read: none,
+  /// The (Alexandria) bibliography (```typc bibliography()```) to use for the thesis.
   /// -> content
   bibliography: none,
-  /// The prompt bibliography (```typc prompts.bibliography()```) to use for the thesis.
-  /// -> content
-  prompts: none,
 
   /// The language in which the thesis is written. `"de"` and `"en"` are supported. The choice of language influences certain texts on the title page and in headings, as well as the date format used on the title page.
   /// -> string
@@ -97,6 +98,9 @@
   // setup glossarium
   show: glossary.make-glossary
 
+  // setup Alexandria
+  show: bib.alexandria.alexandria(prefix: "cite:", read: read)
+
   // setup codly & listing styles
   show: codly-init.with()
   show figure.where(kind: raw): block.with(width: 95%)
@@ -113,6 +117,11 @@
   show figure.where(kind: image): set figure(supplement: l10n.figure)
   show figure.where(kind: table): set figure(supplement: l10n.table)
   show figure.where(kind: raw): set figure(supplement: l10n.listing)
+
+  show quote.where(block: false): it => {
+    it
+    if it.attribution != none [ #it.attribution]
+  }
 
   // table & line styles
   set line(stroke: 0.1mm)
@@ -343,19 +352,27 @@
 
   // bibliography is outlined, and we use our own header for the label
   if bibliography != none {
-    set std.bibliography(title: none)
-    set heading(outlined: true)
-
-    [= #l10n.bibliography <bibliography>]
     bibliography
-  }
 
-  // bibliography is outlined, and we use our own header for the label
-  if prompts != none {
+    let is-prompt(x) = x.details.type == "misc" and x.details.title.starts-with("PROMPT")
+
+    context {
+      let (references, ..rest) = bib.alexandria.get-bibliography(auto)
+      let prompts = references.filter(x => is-prompt(x))
+      let references = references.filter(x => not is-prompt(x))
+
+      if references.len() != 0 {
+        [= #l10n.bibliography <bibliography>]
+        bib.alexandria.render-bibliography(title: none, (references: references, ..rest))
+      }
+
+      if prompts.len() != 0 {
+        [= #l10n.prompts <prompts>]
+        bib.alexandria.render-bibliography(title: none, (references: prompts, ..rest))
+      }
+    }
     set heading(outlined: true)
 
-    [= #l10n.prompts <prompts>]
-    prompts
   }
 
   // List of {Figures, Tables, Listings} only shown if there are any such elements
