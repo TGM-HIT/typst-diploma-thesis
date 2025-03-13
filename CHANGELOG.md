@@ -26,6 +26,43 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
+## [0.3.0] - 2025-03-13
+
+<details>
+<summary>Migration guide from v0.2.x</summary>
+
+To get a feeling what you need to change, compare [`template/main.typ`](https://github.com/TGM-HIT/typst-diploma-thesis/blob/v0.3.0/template/main.typ) with what you have. In particular, you will probably need to
+
+- add a parameter `read: path => read(path),` to the initial `thesis()` template call
+- remove `strict-chapter-end: true,` if you were using it
+- remove all instances of `#chapter-end()`
+
+Additionally, you should have a look at [`template/bibliography.bib`](https://github.com/TGM-HIT/typst-diploma-thesis/blob/v0.3.0/template/bibliography.bib#L42-L46) which demonstrates how to cite a prompt.
+A (German) prose explanation of the usage of prompts can be found in the [Example document](https://github.com/TGM-HIT/typst-diploma-thesis/blob/v0.3.0/example.pdf), section 1.2 _Promptverzeichnis_.
+
+</details>
+
+### Added
+- BREAKING: `thesis()` has an extra `read` parameter for initializing Alexandria
+- There is now a separate List of Prompts
+
+### Changed
+- BREAKING: in `glossary-entry()`, the `desc` parameter is now named `description`
+- for glossary entries, having only a `long` form is not permitted
+- bibliography is now handled by Alexandria
+- inline quotes with attribution now display that attribution
+
+### Removed
+- BREAKING: `chapter-end()` and `strict-chapter-end` have been removed
+
+### Fixed
+- setup of the `i-figured` package works again
+- the template is now compatible with Typst 0.13
+- descriptions of glossary items are no longer ignored
+- an empty glossary is now automatically hidden
+
+### Security
+
 ## [0.2.0] - 2024-10-23
 
 ### Changed
@@ -58,9 +95,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Initial Release
 
 
-[Unreleased]: https://github.com/SillyFreak/typst-typst-diploma-thesis/compare/v0.2.0...HEAD
-[0.2.0]: https://github.com/SillyFreak/typst-typst-diploma-thesis/releases/tag/v0.2.0
-[0.1.3]: https://github.com/SillyFreak/typst-typst-diploma-thesis/releases/tag/v0.1.3
-[0.1.2]: https://github.com/SillyFreak/typst-typst-diploma-thesis/releases/tag/v0.1.2
-[0.1.1]: https://github.com/SillyFreak/typst-typst-diploma-thesis/releases/tag/v0.1.1
-[0.1.0]: https://github.com/SillyFreak/typst-typst-diploma-thesis/releases/tag/v0.1.0
+[Unreleased]: https://github.com/TGM-HIT/typst-diploma-thesis/compare/v0.2.0...HEAD
+[0.3.0]: https://github.com/TGM-HIT/typst-diploma-thesis/releases/tag/v0.3.0
+[0.2.0]: https://github.com/TGM-HIT/typst-diploma-thesis/releases/tag/v0.2.0
+[0.1.3]: https://github.com/TGM-HIT/typst-diploma-thesis/releases/tag/v0.1.3
+[0.1.2]: https://github.com/TGM-HIT/typst-diploma-thesis/releases/tag/v0.1.2
+[0.1.1]: https://github.com/TGM-HIT/typst-diploma-thesis/releases/tag/v0.1.1
+[0.1.0]: https://github.com/TGM-HIT/typst-diploma-thesis/releases/tag/v0.1.0
