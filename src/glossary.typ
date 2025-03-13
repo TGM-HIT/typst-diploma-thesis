@@ -69,15 +69,7 @@
 ) = context {
   let entries = _glossary_entries.get()
 
-  // let any-references = entries.any(e => {
-  //   let count = glossarium.__query_labels_with_key(here(), e.key).len()
-  //   count > 0
-  // })
-
-  // TODO
-  let any-references = true
-
-  if any-references or args.named().at("show-all", default: false) {
+  if glossarium.there-are-refs() or args.named().at("show-all", default: false) {
     title
   }
 
