@@ -60,7 +60,6 @@
   /// Changes the paper format of the thesis. Use this option with care, as it will shift various contents around.
   /// -> string
   paper: "a4",
-  strict-chapter-end: false,
 ) = body => {
   import "@preview/alexandria:0.1.1"
   import "@preview/codly:1.2.0": codly, codly-init
@@ -70,11 +69,6 @@
   import "@preview/outrageous:0.4.0"
 
   assert(current-authors in ("highlight", "only"))
-
-  assert(not strict-chapter-end, message: {
-    "`chapter-end` is no longer needed; "
-    "please remove any use of `chapter-end` and the `strict-chapter-end` parameter"
-  })
 
   // basic document & typesetting setup
   set document(

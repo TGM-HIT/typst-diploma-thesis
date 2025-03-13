@@ -24,7 +24,6 @@
 
   // language: "en",
   // current-authors: "only",
-  // strict-chapter-end: true,
 )
 
 #include "glossaries.typ"
