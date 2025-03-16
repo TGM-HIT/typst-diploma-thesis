@@ -351,6 +351,8 @@
 
   // bibliography is outlined, and we use our own header for the label
   if bibliography != none {
+    set heading(outlined: true)
+
     bibliography
 
     let is-prompt(x) = x.details.type == "misc" and x.details.title.starts-with("PROMPT")
@@ -370,8 +372,6 @@
         bib.alexandria.render-bibliography(title: none, (references: prompts, ..rest))
       }
     }
-    set heading(outlined: true)
-
   }
 
   // List of {Figures, Tables, Listings} only shown if there are any such elements
