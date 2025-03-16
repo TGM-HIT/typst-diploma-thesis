@@ -54,18 +54,6 @@ The template's main module. All functions that need to be called are directly ex
   show-module-name: false,
 )
 
-== `tgm-hit-thesis.utils`
-
-Utilities, mostly internal.
-
-#module(
-  read("/src/utils.typ"),
-  name: "tgm-hit-thesis.utils",
-  label-prefix: none,
-  scope: scope,
-  show-module-name: false,
-)
-
 == `tgm-hit-thesis.glossary`
 
 Wrappers for #link("https://typst.app/universe/package/glossarium")[Glossarium] functionality. The #ref-fn("glossary-entry()") function and Glossarium's ```typc gls()``` and ```typc glspl()``` are re-exported from the main module.

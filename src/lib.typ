@@ -2,7 +2,6 @@
 #import "l10n.typ"
 #import "glossary.typ" as glossary: register-glossary, glossary-entry, gls, glspl
 #import "bib.typ" as bib: bibliography
-#import "utils.typ"
 
 #let _authors = state("thesis-authors")
 #let _current_authors = state("thesis-current-authors", ())
@@ -66,6 +65,8 @@
   import "@preview/i-figured:0.2.4"
   import "@preview/outrageous:0.4.0"
 
+  import "structure.typ"
+
   assert(current-authors in ("highlight", "only"))
 
   // basic document & typesetting setup
@@ -127,13 +128,7 @@
   })
 
   // references to non-numbered headings
-  show ref: it => {
-    if type(it.element) != content { return it }
-    if it.element.func() != heading { return it }
-    if it.element.numbering != none { return it }
-
-    link(it.target, it.element.body)
-  }
+  show: structure.plain-heading-refs()
 
   // title page
 
@@ -224,9 +219,9 @@
     header-ascent: 15%,
     footer-descent: 15%,
     header: context {
-      if utils.is-chapter-page() {
+      if structure.is-chapter-page() {
         // no header
-      } else if utils.is-empty-page() {
+      } else if structure.is-empty-page() {
         // no header
       } else {
         hydra(
@@ -256,11 +251,11 @@
       }
     },
     footer: context {
-      if utils.is-chapter-page() {
+      if structure.is-chapter-page() {
         align(center)[
           #counter(page).display("1")
         ]
-      } else if utils.is-empty-page() {
+      } else if structure.is-empty-page() {
         // no footer
       } else {
         hydra(
@@ -298,36 +293,16 @@
     },
   )
 
-  show: utils.mark-empty-pages()
+  show: structure.mark-empty-pages()
+  show: structure.chapters-and-sections(
+    chapter: l10n.chapter,
+    section: l10n.section,
+  )
 
-  // front matter headings are not outlined
-  set heading(outlined: false)
-  // Heading supplements are section or chapter, depending on level
-  show heading: set heading(supplement: l10n.section)
-  show heading.where(level: 1): set heading(supplement: l10n.chapter)
-  // chapters start on a right page and have very big, fancy headings
-  show heading.where(level: 1): it => {
-    set text(1.3em)
-    pagebreak(to: "odd")
-    v(12%)
-    if it.numbering != none [
-      #it.supplement #counter(heading).display()
-      #parbreak()
-    ]
-    set text(1.3em)
-    it.body
-    v(1cm)
-  }
-  // the first section of a chapter starts on the next page
-  show heading.where(level: 2): it => {
-    if utils.is-first-section() {
-      pagebreak()
-    }
-    it
-  }
+  show: structure.front-matter()
 
   // main body with i-figured
-  // scope i-figured to now interact with Glossarium
+  // scope i-figured to not interact with Glossarium
   {
     show heading: i-figured.reset-counters
     show figure: i-figured.show-figure
@@ -338,63 +313,62 @@
     body
   }
 
-  // back matter
-
-  // glossary is outlined
+  // back matter: references
   {
-    set heading(outlined: true)
+    show: structure.back-matter-references()
 
     glossary.print-glossary(title: [= #l10n.glossary <glossary>])
-  }
 
-  // bibliography is outlined, and we use our own header for the label
-  if bibliography != none {
-    set heading(outlined: true)
+    if bibliography != none {
+      bibliography
 
-    bibliography
+      let is-prompt(x) = x.details.type == "misc" and x.details.title.starts-with("PROMPT")
 
-    let is-prompt(x) = x.details.type == "misc" and x.details.title.starts-with("PROMPT")
+      context {
+        let (references, ..rest) = bib.alexandria.get-bibliography(auto)
+        let prompts = references.filter(x => is-prompt(x))
+        let references = references.filter(x => not is-prompt(x))
 
-    context {
-      let (references, ..rest) = bib.alexandria.get-bibliography(auto)
-      let prompts = references.filter(x => is-prompt(x))
-      let references = references.filter(x => not is-prompt(x))
+        if references.len() != 0 {
+          [= #l10n.bibliography <bibliography>]
+          bib.alexandria.render-bibliography(title: none, (references: references, ..rest))
+        }
 
-      if references.len() != 0 {
-        [= #l10n.bibliography <bibliography>]
-        bib.alexandria.render-bibliography(title: none, (references: references, ..rest))
-      }
-
-      if prompts.len() != 0 {
-        [= #l10n.prompts <prompts>]
-        bib.alexandria.render-bibliography(title: none, (references: prompts, ..rest))
+        if prompts.len() != 0 {
+          [= #l10n.prompts <prompts>]
+          bib.alexandria.render-bibliography(title: none, (references: prompts, ..rest))
+        }
       }
     }
   }
 
-  // List of {Figures, Tables, Listings} only shown if there are any such elements
-  context if query(figure.where(kind: image)).len() != 0 {
-    [= #l10n.list-of-figures <list-of-figures>]
-    i-figured.outline(
-      title: none,
-      target-kind: image,
-    )
-  }
+  // List of {Figures, Tables, Listings}
+  {
+    show: structure.back-matter-lists()
 
-  context if query(figure.where(kind: table)).len() != 0 {
-    [= #l10n.list-of-tables <list-of-tables>]
-    i-figured.outline(
-      title: none,
-      target-kind: table,
-    )
-  }
+    context if query(figure.where(kind: image)).len() != 0 {
+      [= #l10n.list-of-figures <list-of-figures>]
+      i-figured.outline(
+        title: none,
+        target-kind: image,
+      )
+    }
 
-  context if query(figure.where(kind: raw)).len() != 0 {
-    [= #l10n.list-of-listings <list-of-listings>]
-    i-figured.outline(
-      title: none,
-      target-kind: raw,
-    )
+    context if query(figure.where(kind: table)).len() != 0 {
+      [= #l10n.list-of-tables <list-of-tables>]
+      i-figured.outline(
+        title: none,
+        target-kind: table,
+      )
+    }
+
+    context if query(figure.where(kind: raw)).len() != 0 {
+      [= #l10n.list-of-listings <list-of-listings>]
+      i-figured.outline(
+        title: none,
+        target-kind: raw,
+      )
+    }
   }
 }
 
@@ -489,10 +463,11 @@
 ///
 /// -> function
 #let main-matter() = body => {
-  [= #l10n.contents <contents>]
-  outline(title: none)
+  import "structure.typ"
 
-  set heading(outlined: true, numbering: "1.1")
+  show: structure.main-matter(
+    contents: l10n.contents,
+  )
 
   body
 }
