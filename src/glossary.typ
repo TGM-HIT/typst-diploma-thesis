@@ -1,4 +1,5 @@
-#import "@preview/glossarium:0.5.2" as glossarium: make-glossary, gls, agls, glspl
+#import "libs.typ": glossarium
+#import glossarium: make-glossary, gls, agls, glspl
 
 #let _glossary_entries = state("thesis-glossary-entries")
 

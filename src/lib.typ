@@ -58,12 +58,9 @@
   /// -> string
   paper: "a4",
 ) = body => {
-  import "@preview/alexandria:0.1.1"
-  import "@preview/codly:1.2.0": codly, codly-init
-  import "@preview/datify:0.1.3"
-  import "@preview/hydra:0.6.0": hydra, anchor
-  import "@preview/i-figured:0.2.4"
-  import "@preview/outrageous:0.4.0"
+  import "libs.typ": *
+  import codly: codly, codly-init
+  import hydra: hydra, anchor
 
   import "structure.typ"
 
