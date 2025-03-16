@@ -288,14 +288,10 @@
 
   show: structure.front-matter()
 
-  // main body with i-figured
-  // scope i-figured to not interact with Glossarium
+  // main body: declaration, abstracts, and then the main matter
   {
-    show heading: i-figured.reset-counters
-    show figure: i-figured.show-figure
-    show math.equation: i-figured.show-equation
-
-    // the body contains the declaration, abstracts, and then the main matter
+    // scope i-figured to not interact with Glossarium
+    show: figures.numbering()
 
     body
   }
@@ -333,29 +329,11 @@
   {
     show: structure.back-matter-lists()
 
-    context if query(figure.where(kind: image)).len() != 0 {
-      [= #l10n.list-of-figures <list-of-figures>]
-      i-figured.outline(
-        title: none,
-        target-kind: image,
-      )
-    }
-
-    context if query(figure.where(kind: table)).len() != 0 {
-      [= #l10n.list-of-tables <list-of-tables>]
-      i-figured.outline(
-        title: none,
-        target-kind: table,
-      )
-    }
-
-    context if query(figure.where(kind: raw)).len() != 0 {
-      [= #l10n.list-of-listings <list-of-listings>]
-      i-figured.outline(
-        title: none,
-        target-kind: raw,
-      )
-    }
+    figures.outlines(
+      figures: [= #l10n.list-of-figures <list-of-figures>],
+      tables: [= #l10n.list-of-tables <list-of-tables>],
+      listings: [= #l10n.list-of-listings <list-of-listings>],
+    )
   }
 }
 
