@@ -59,9 +59,9 @@
   paper: "a4",
 ) = body => {
   import "libs.typ": *
-  import codly: codly, codly-init
   import hydra: hydra, anchor
 
+  import "figures.typ"
   import "structure.typ"
 
   assert(current-authors in ("highlight", "only"))
@@ -91,10 +91,6 @@
   // setup Alexandria
   show: bib.alexandria.alexandria(prefix: "cite:", read: read)
 
-  // setup codly & listing styles
-  show: codly-init.with()
-  show figure.where(kind: raw): block.with(width: 95%)
-
   // outline style
   show outline.where(target: selector(heading)): it => {
     show outline.entry: outrageous.show-entry.with(
@@ -109,20 +105,14 @@
   // general styles
 
   // figure supplements
-  show figure.where(kind: image): set figure(supplement: l10n.figure)
-  show figure.where(kind: table): set figure(supplement: l10n.table)
-  show figure.where(kind: raw): set figure(supplement: l10n.listing)
+  show: figures.figure-style(supplement: l10n.figure)
+  show: figures.table-style(supplement: l10n.table)
+  show: figures.listing-style(supplement: l10n.listing)
 
   show quote.where(block: false): it => {
     it
     if it.attribution != none [ #it.attribution]
   }
-
-  // table & line styles
-  set line(stroke: 0.1mm)
-  set table(stroke: (x, y) => if y == 0 {
-    (bottom: 0.1mm)
-  })
 
   // references to non-numbered headings
   show: structure.plain-heading-refs()
