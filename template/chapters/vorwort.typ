@@ -70,7 +70,7 @@ Für Diplomarbeiten ist in Österreich ein separates @prompts vorgeschrieben: we
   }
   ```,
   caption: [Eintrag eines Prompts für diese Vorlage im BibTeX-Format],
-) <bib-prompt>
+) <lst:bib-prompt>
 
 Entscheidend ist der Referenztyp `@misc` und der Titel, der mit `PROMPT` beginnt. Das Referenzieren passiert mit ```typ @cite:prompt1```: @cite:prompt1 Wie man sieht ist dieses Zitat von der gleichen Form wie ein normales, allerdings führt die Verlinkung auf das separate @prompts.
 
@@ -120,7 +120,7 @@ Abbildungen, Tabellen, Codestücke und ähnlich eigenständige Inhalte werden of
   ```,
   placement: auto,
   caption: [Definition einer Abbildung],
-) <figure-definition>
+) <lst:figure-definition>
 
 #figure(
   table(
@@ -136,13 +136,13 @@ Abbildungen, Tabellen, Codestücke und ähnlich eigenständige Inhalte werden of
   ),
   placement: auto,
   caption: [Arten von Abbildungen und deren Präfixe in _i-figured_],
-) <figure-kinds>
+) <tbl:figure-kinds>
 
 Es ist in wissenschaftlichen Arbeiten auch üblich, Abbildungen zur besseren Seitennutzung zu verschieben -- normalerweise an den oberen oder unteren Rand einer Seite. In Typst kann dazu ```typc figure(.., placement: auto)``` benutzt werden. Die Abbildungen in diesem Abschnitt benutzen diese Funktionalität: obwohl dieser Absatz im Quelltext nach den Abbildungen kommt, wird er vor ihnen angezeigt. Ob die Ergebnisse der automatischen Platzierung zufriedenstellend sind sollte für die Endversion natürlich nochmal manuell geprüft werden.
 
 Mathematische Gleichungen werden gemäß den Konventionen ein bisschen anders dargestellt und haben in Typst außerdem eine eigene Syntax. Die Definition von @eqt:pythagoras kann im Quelltext des Vorworts eingesehen werden:
 
-$ a^2 + b^2 = c^2 $ <pythagoras>
+$ a^2 + b^2 = c^2 $ <eqt:pythagoras>
 
 Relevante Dokumentation:
 
