@@ -81,7 +81,7 @@
   /// -> content
   listings: none,
 ) = {
-  import "libs.typ": i-figured
+  import "libs.typ": i-figured, outrageous
 
   assert.ne(figures, none, message: "List of figures title not set")
   assert.ne(tables, none, message: "List of tables title not set")
@@ -91,6 +91,10 @@
     (image, figures),
     (table, tables),
     (raw, listings),
+  )
+
+  show outline.entry: outrageous.show-entry.with(
+    ..outrageous.presets.outrageous-figures,
   )
 
   for (kind, title) in kinds {

@@ -136,10 +136,18 @@
   /// -> content
   contents: none,
 ) = body => {
+  import "libs.typ": outrageous
+
   assert.ne(contents, none, message: "Outline title not set")
 
-  [= #contents <contents>]
-  outline(title: none)
+  {
+    show outline.entry: outrageous.show-entry.with(
+      font: (auto,),
+    )
+
+    [= #contents <contents>]
+    outline(title: none)
+  }
 
   set heading(outlined: true, numbering: "1.1")
 
