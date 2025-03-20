@@ -136,14 +136,12 @@
   /// -> content
   contents: none,
 ) = body => {
-  import "libs.typ": outrageous
-
   assert.ne(contents, none, message: "Outline title not set")
 
   {
-    show outline.entry: outrageous.show-entry.with(
-      font: (auto,),
-    )
+    show outline.entry.where(level: 1): set outline.entry(fill: none)
+    show outline.entry.where(level: 1): set block(above: 12pt)
+    show outline.entry.where(level: 1): set text(weight: "bold")
 
     [= #contents <contents>]
     outline(title: none)
