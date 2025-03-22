@@ -294,7 +294,16 @@
     if bibliography != none {
       bibliography
 
-      let is-prompt(x) = x.details.type == "misc" and x.details.title.starts-with("PROMPT")
+      let is-prompt(x) = {
+        if x.details.type != "misc" { return false }
+
+        let title = x.details.title
+        if type(title) == dictionary {
+          title = title.value
+        }
+
+        title.starts-with("PROMPT")
+      }
 
       context {
         let (references, ..rest) = bib.alexandria.get-bibliography(auto)
