@@ -1,3 +1,3 @@
-#import "@preview/tgm-hit-thesis:0.3.0": *
+#import "@preview/tgm-hit-thesis:0.3.1": *
 
 #import "assets.typ"
