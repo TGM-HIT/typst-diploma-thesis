@@ -1,36 +1,32 @@
 #import "template.typ" as template: *
 #import "/src/lib.typ" as tgm-hit-thesis
 
-#let package-meta = toml("/typst.toml").package
-#let date = datetime(year: 2025, month: 4, day: 8)
-
 #show: manual(
+  package-meta: toml("/typst.toml").package,
   title: "TGM HIT diploma thesis template",
   // subtitle: "...",
-  authors: package-meta.authors.map(a => a.split("<").at(0).trim()),
-  abstract: [
-    A diploma thesis template for students of the HIT department at TGM Wien.
-  ],
-  url: package-meta.repository,
-  version: package-meta.version,
-  date: date,
-)
+  date: datetime(year: 2025, month: 4, day: 8),
 
-// the scope for evaluating expressions and documentation
-#let scope = (tgm-hit-thesis: tgm-hit-thesis)
+  // logo: rect(width: 5cm, height: 5cm),
+  // abstract: [
+  //   A PACKAGE for something
+  // ],
+
+  scope: (tgm-hit-thesis: tgm-hit-thesis),
+)
 
 = Introduction
 
 This template is aimed at students of the information technology department at the TGM technical secondary school in Vienna. It can be used both in the Typst app and using the CLI:
 
-Using the Typst web app, you can create a project by e.g. using this link: #link("https://typst.app/?template=" + package-meta.name + "&version=latest").
+Using the Typst web app, you can create a project by e.g. using this link: #context link("https://typst.app/?template=" + package-meta().name + "&version=latest").
 
 To work locally, use the following command:
 
-#raw(
+#context raw(
   block: true,
   lang: "bash",
-  "typst init @preview/" + package-meta.name
+  "typst init @preview/" + package-meta().name
 )
 
 If you are getting started writing your thesis, you will likely be better off looking into the thesis document created by the template: it contains instruction and examples on the most important features of this template. If you have not yet initialized the template, a rendered version is linked in the README. If you are new to Typst, also check out the Typst documentation: https://typst.app/docs/.
@@ -50,7 +46,6 @@ The template's main module. All functions that need to be called are directly ex
   read("/src/lib.typ"),
   name: "tgm-hit-thesis",
   label-prefix: none,
-  scope: scope,
   show-module-name: false,
 )
 
@@ -62,7 +57,6 @@ Wrappers for #link("https://typst.app/universe/package/glossarium")[Glossarium] 
   read("/src/glossary.typ"),
   name: "tgm-hit-thesis.glossary",
   label-prefix: none,
-  scope: scope,
   show-module-name: false,
 )
 
@@ -74,7 +68,6 @@ Contains contextual constants that display localized strings. This is a thin wra
   read("/src/l10n.typ"),
   name: "tgm-hit-thesis.l10n",
   label-prefix: none,
-  scope: scope,
   show-module-name: false,
 )
 
@@ -86,6 +79,5 @@ Contains images used in the template.
   read("/src/assets/mod.typ"),
   name: "tgm-hit-thesis.assets",
   label-prefix: none,
-  scope: scope,
   show-module-name: false,
 )
