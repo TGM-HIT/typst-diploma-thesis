@@ -26,6 +26,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
+## [0.3.1] - 2025-04-08
+
+### Fixed
+- figure outlines are not styled like the main outline anymore
+- the bibliography is now outlined correctly
+
 ## [0.3.0] - 2025-03-13
 
 <details>
@@ -95,7 +101,8 @@ A (German) prose explanation of the usage of prompts can be found in the [Exampl
 Initial Release
 
 
-[Unreleased]: https://github.com/TGM-HIT/typst-diploma-thesis/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/TGM-HIT/typst-diploma-thesis/compare/v0.3.1...HEAD
+[0.3.1]: https://github.com/TGM-HIT/typst-diploma-thesis/releases/tag/v0.3.1
 [0.3.0]: https://github.com/TGM-HIT/typst-diploma-thesis/releases/tag/v0.3.0
 [0.2.0]: https://github.com/TGM-HIT/typst-diploma-thesis/releases/tag/v0.2.0
 [0.1.3]: https://github.com/TGM-HIT/typst-diploma-thesis/releases/tag/v0.1.3
