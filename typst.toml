@@ -14,7 +14,7 @@ repository = "https://github.com/TGM-HIT/typst-diploma-thesis"
 keywords = ["TGM", "HIT", "Diplomarbeit", "thesis", "HTL"]
 categories = ["thesis"]
 disciplines = ["computer-science"]
-compiler = "0.11.0"
+compiler = "0.13.0"
 exclude = [
   ".github",
   "docs",
