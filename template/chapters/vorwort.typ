@@ -15,7 +15,7 @@ Während der Großteil dieser Vorlage nur die Struktur einer typischen Diplomarb
 
 Das richtige zitieren spielt innerhalb der wissenschaftlichen Arbeit eine wichtige Rolle. Die Verwaltung von Literatur ist bereits in Typst enthalten, allerdings wird zur Unterstützung des Promptverzeichnisses (siehe @about:prompts) das externe Paket _Alexandria_ für Quellen verwendet; die Benutzung ist aber großteils ident. Die Datei `bibliography.bib` ist bereits vorgegeben, es kann aber wie in der Dokumentation beschrieben auch das _Hayagriva_-Format verwendet werden.
 
-Als kleines Beispiel findet sich hier nun ein Zitat über Schall, aus dem ersten Phsyik Lehrbuch der Autoren #cite(<cite:physik1>, form: "author").
+Als kleines Beispiel findet sich hier nun ein Zitat über Schall, aus dem ersten Physik Lehrbuch der Autoren #cite(<cite:physik1>, form: "author").
 
 #quote(attribution: [@cite:physik1[S. 145]], block: true)[
   "Mechanische Longitudinalwellen werden als Schall bezeichnet. In einem Frequenzbereich von 16 Hz bis 20 kHz sind sie für das menschliche Ohr wahrnehmbar. Liegen die Frequenzen unter diesem Bereich, so bezeichnet man diese Wellen als Infraschall, darüber als Ultraschall."
