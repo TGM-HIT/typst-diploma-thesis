@@ -136,9 +136,13 @@
   /// -> content
   contents: none,
 ) = body => {
+  import "outline.typ": align-fill
+
   assert.ne(contents, none, message: "Outline title not set")
 
   {
+    show outline.entry: align-fill()
+    set outline.entry(fill: repeat(gap: 6pt, justify: false)[.])
     show outline.entry.where(level: 1): set outline.entry(fill: none)
     show outline.entry.where(level: 1): set block(above: 12pt)
     show outline.entry.where(level: 1): set text(weight: "bold")
