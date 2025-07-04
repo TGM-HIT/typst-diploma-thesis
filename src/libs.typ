@@ -6,10 +6,4 @@
 #import "@preview/hydra:0.6.1"
 #import "@preview/i-figured:0.2.4"
 #import "@preview/linguify:0.4.2"
-#let outrageous = if sys.version < version(0, 13, 0) {
-  import "@preview/outrageous:0.3.0"
-  outrageous
-} else {
-  import "@preview/outrageous:0.4.0"
-  outrageous
-}
+#import "@preview/outrageous:0.4.0"
