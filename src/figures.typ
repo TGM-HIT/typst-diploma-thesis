@@ -47,9 +47,12 @@
   assert.ne(supplement, none, message: "Listing supplement not set")
 
   show figure.where(kind: raw): set figure(supplement: supplement)
+  show figure.where(kind: raw): it => {
+    show raw.where(block: true): block.with(width: 95%)
+    it
+  }
 
   show: codly-init.with()
-  show figure.where(kind: raw): block.with(width: 95%)
 
   body
 }
