@@ -50,7 +50,7 @@ Nach der Verwendung einer Quelle wird diese auch im @bibliography gelistet, welc
 
 Relevante Dokumentation:
 
-- #highlighted-link("https://typst.app/universe/package/alexandria/0.1.2/")[das Alexandria-Paket] -- wird statt dem eingebauten Literaturverzeichnis verwendet
+- #highlighted-link("https://typst.app/universe/package/alexandria/0.2.0/")[das Alexandria-Paket] -- wird statt dem eingebauten Literaturverzeichnis verwendet
 - #highlighted-link("https://typst.app/docs/reference/model/bibliography/")[```typc bibliography()```] -- das eingebaute Literaturverzeichnis
 - #highlighted-link("https://typst.app/docs/reference/model/cite/")[```typ @key``` bzw. ```typc cite()```]
 - #highlighted-link("https://typst.app/docs/reference/model/quote/")[```typc quote()```]
@@ -97,7 +97,7 @@ Das für die Glossar-Funktion im Hintergrund verwendete _Glossarium_-Paket stell
 
 Relevante Dokumentation:
 
-- #highlighted-link("https://typst.app/universe/package/glossarium/0.4.1/")[das Glossarium-Paket]
+- #highlighted-link("https://typst.app/universe/package/glossarium/0.5.6/")[das Glossarium-Paket]
 
 #set-current-authors("Arthur Dent", "Tricia McMillan")
 
@@ -109,7 +109,7 @@ Vor diesem Abschnitt wurden die Autoren auf _Arthur Dent_ und _Tricia McMillan_ 
 
 == Abbildungen und Gleichungen
 
-Abbildungen, Tabellen, Codestücke und ähnlich eigenständige Inhalte werden oft verwendet, um den Fließtext zu komplementieren. In den vorangegangenen Abschnitten wurden bereits zwei _Auflistungen_, also Codestücke, verwendet. Abbildungen sollten normalerweise im Fließtext referenziert werden, damit die inhaltliche Relevanz explizit klar ist. Zum Beispiel könnte mittels ```typ @lst:figure-definition``` auf den in @lst:figure-definition gezeigten Code verwiesen werden. Die Verweise in diesem Abschnitt benutzen genau diesen Mechanismus, in der PDF-Version der Arbeit sind diese Verweise funktionierende Links. Der Präfix `lst:` wurde dabei durch das _i-figured_-Paket eingefügt und anhand der Art des Inhalts bestimmt, siehe @tbl:figure-kinds. Dieses Paket bewirkt auch, dass Abbildungen nicht durchlaufend nummeriert sind, sondern kapitelweise.
+Abbildungen, Tabellen, Codestücke und ähnlich eigenständige Inhalte werden oft verwendet, um den Fließtext zu komplementieren. In den vorangegangenen Abschnitten wurden bereits zwei _Auflistungen_, also Codestücke, verwendet. Abbildungen sollten normalerweise im Fließtext referenziert werden, damit die inhaltliche Relevanz explizit klar ist. Zum Beispiel könnte mittels ```typ @lst:figure-definition``` auf den in @lst:figure-definition gezeigten Code verwiesen werden. Die Verweise in diesem Abschnitt benutzen genau diesen Mechanismus, in der PDF-Version der Arbeit sind diese Verweise funktionierende Links. Der Präfix `lst:` dient dabei rein der Übersicht und kann bei Präferenz ausgelassen werden. @tbl:figure-kinds zeigt übliche/vorgeschlagene Präfixe. In dieser Vorlage werden Abbildungen nicht durchlaufend sondern kapitelweise nummeriert.
 
 #figure(
   ```typ
@@ -135,7 +135,7 @@ Abbildungen, Tabellen, Codestücke und ähnlich eigenständige Inhalte werden of
     [Gleichung], [```typ math.equation()```], [`eqt:`], [```typ math.equation()``` hat auch die Spezial-Syntax ```typ $ ... $```],
   ),
   placement: auto,
-  caption: [Arten von Abbildungen und deren Präfixe in _i-figured_],
+  caption: [Arten von Abbildungen und empfohlene Präfixe],
 ) <tbl:figure-kinds>
 
 Es ist in wissenschaftlichen Arbeiten auch üblich, Abbildungen zur besseren Seitennutzung zu verschieben -- normalerweise an den oberen oder unteren Rand einer Seite. In Typst kann dazu ```typc figure(.., placement: auto)``` benutzt werden. Die Abbildungen in diesem Abschnitt benutzen diese Funktionalität: obwohl dieser Absatz im Quelltext nach den Abbildungen kommt, wird er vor ihnen angezeigt. Ob die Ergebnisse der automatischen Platzierung zufriedenstellend sind sollte für die Endversion natürlich nochmal manuell geprüft werden.
@@ -151,7 +151,6 @@ Relevante Dokumentation:
 - #highlighted-link("https://typst.app/docs/reference/model/table/")[```typc table()```]
 - #highlighted-link("https://typst.app/docs/reference/text/raw/")[````typ ```...``` ```` bzw. ```typc raw()```]
 - #highlighted-link("https://typst.app/docs/reference/math/equation/")[```typ $ ... $``` bzw. ```typc math.equation()```]
-- #highlighted-link("https://typst.app/universe/package/i-figured/0.2.4/")[das i-figured-Paket]
 
 == Interne Verweise <internal-references>
 
