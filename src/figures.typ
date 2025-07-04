@@ -47,9 +47,12 @@
   assert.ne(supplement, none, message: "Listing supplement not set")
 
   show figure.where(kind: raw): set figure(supplement: supplement)
+  show figure.where(kind: raw): it => {
+    show raw.where(block: true): block.with(width: 95%)
+    it
+  }
 
   show: codly-init.with()
-  show figure.where(kind: raw): block.with(width: 95%)
 
   body
 }
@@ -58,11 +61,24 @@
 ///
 /// -> function
 #let numbering() = body => {
-  import "libs.typ": i-figured
+  show heading.where(level: 1): it => {
+    let figures = (image, table, raw).map(kind => figure.where(kind: kind))
+    let counters = (..figures, math.equation).map(counter)
 
-  show heading: i-figured.reset-counters
-  show figure: i-figured.show-figure
-  show math.equation: i-figured.show-equation
+    for c in counters {
+      c.update(0)
+    }
+
+    it
+  }
+  set figure(numbering: n => {
+    let ch = counter(heading).get().first()
+    std.numbering("1.1", ch, n)
+  })
+  set math.equation(numbering: n => {
+    let ch = counter(heading).get().first()
+    std.numbering("(1.1)", ch, n)
+  })
 
   body
 }
@@ -81,7 +97,7 @@
   /// -> content
   listings: none,
 ) = {
-  import "libs.typ": i-figured, outrageous
+  import "libs.typ": outrageous
 
   assert.ne(figures, none, message: "List of figures title not set")
   assert.ne(tables, none, message: "List of tables title not set")
@@ -100,7 +116,7 @@
   for (kind, title) in kinds {
     context if query(figure.where(kind: kind)).len() != 0 {
       title
-      i-figured.outline(title: none, target-kind: kind)
+      outline(title: none, target: figure.where(kind: kind))
     }
   }
 }

@@ -89,6 +89,9 @@
   // setup Alexandria
   show: bib.alexandria.alexandria(prefix: "cite:", read: read)
 
+  // figure numbering
+  show: figures.numbering()
+
   // general styles
 
   // figure supplements
@@ -278,12 +281,7 @@
   show: structure.front-matter()
 
   // main body: declaration, abstracts, and then the main matter
-  {
-    // scope i-figured to not interact with Glossarium
-    show: figures.numbering()
-
-    body
-  }
+  body
 
   // back matter: references
   {
