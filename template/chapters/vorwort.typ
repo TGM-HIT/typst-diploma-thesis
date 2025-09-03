@@ -83,7 +83,7 @@ Das @glossary enthält Erklärungen von Begriffen und Abkürzen, die im Fließte
 #figure(
   ```typ
   #glossary-entry(
-    "ac:tgm",
+    "tgm",
     short: "TGM",
     long: "Technologisches Gewerbemuseum",
   )
@@ -91,13 +91,13 @@ Das @glossary enthält Erklärungen von Begriffen und Abkürzen, die im Fließte
   caption: [Eintrag einer Abkürzung in `glossaries.typ`],
 )
 
-Verwendet werden kann dieser Glossareintrag ähnlich einer Quellenangabe durch ```typ @ac:tgm```. Bei der ersten Verwendung wird die Langform automatisch auch dargestellt: @ac:tgm. Bei weiteren Verwendungen wird dagegen nur die Kurzform angezeigt: @ac:tgm.
+Verwendet werden kann dieser Glossareintrag ähnlich einer Quellenangabe durch ```typ @tgm```. Bei der ersten Verwendung wird die Langform automatisch auch dargestellt: @tgm. Bei weiteren Verwendungen wird dagegen nur die Kurzform angezeigt: @tgm.
 
-Das für die Glossar-Funktion im Hintergrund verwendete _Glossarium_-Paket stellt auch weitere Funktionen zur Verfügung, die z.B. bei der Anpassung an die deutschen Fälle hilfreich sein können. Außerdem kann so die Langform erzwungen werden: _diese Diplomarbeit wurde im #gls("ac:tgm", display: "Technologischen Gewerbemuseum") erstellt; "#gls("ac:tgm", long: true)" wird man im Fließtext aufgrund der Struktur der deutschen Sprache wahrscheinlich selten finden._
+Das für die Glossar-Funktion im Hintergrund verwendete _Glossarium_-Paket stellt auch weitere Funktionen zur Verfügung, die z.B. bei der Anpassung an die deutschen Fälle hilfreich sein können. Außerdem kann so die Langform erzwungen werden: _diese Diplomarbeit wurde im #gls("tgm", display: "Technologischen Gewerbemuseum") erstellt; "#gls("tgm", long: true)" wird man im Fließtext aufgrund der Struktur der deutschen Sprache wahrscheinlich selten finden._
 
 Relevante Dokumentation:
 
-- #highlighted-link("https://typst.app/universe/package/glossarium/0.5.6/")[das Glossarium-Paket]
+- #highlighted-link("https://typst.app/universe/package/glossarium/0.5.9/")[das Glossarium-Paket]
 
 #set-current-authors("Arthur Dent", "Tricia McMillan")
 

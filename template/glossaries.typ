@@ -2,7 +2,7 @@
 
 #register-glossary(
   glossary-entry(
-    "ac:tgm",
+    "tgm",
     short: "TGM",
     long: "Technologisches Gewerbemuseum",
     // group: "Accronyms",
