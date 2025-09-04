@@ -198,8 +198,6 @@
     header: context {
       if structure.is-chapter-page() {
         // no header
-      } else if structure.is-empty-page() {
-        // no header
       } else {
         hydra(
           1,
@@ -232,8 +230,6 @@
         align(center)[
           #counter(page).display("1")
         ]
-      } else if structure.is-empty-page() {
-        // no footer
       } else {
         hydra(
           1,
@@ -272,7 +268,8 @@
     },
   )
 
-  show: structure.mark-empty-pages()
+  show: structure.skip-empty-page-headers-footers()
+
   show: structure.chapters-and-sections(
     chapter: l10n.chapter,
     section: l10n.section,
