@@ -19,7 +19,7 @@
 
 This template is aimed at students of the information technology department at the TGM technical secondary school in Vienna. It can be used both in the Typst app and using the CLI:
 
-Using the Typst web app, you can create a project by e.g. using this link: #context link("https://typst.app/?template=" + package-meta().name + "&version=latest").
+Using the Typst web app, you can create a project by e.g. using the "Create new project in app" button on the package's Universe page: #context link("https://typst.app/universe/package/" + package-meta().name).
 
 To work locally, use the following command:
 
@@ -33,7 +33,7 @@ If you are getting started writing your thesis, you will likely be better off lo
 
 The rest of this manual documents the individual functions offered by this package. This is useful if you want to know what customization options are available, or you're not sure what parts of the template package do.
 
-As a school-specific template, this package does not offer enough configurability to be used at different institutions. However, if you like this template, feel free to adapt the code (MIT-licensed) to your needs, or open a Github issue if you think the template could be adapted to work for your requirements.
+As a school-specific template, this package does not offer enough configurability to be used at different institutions. However, if you like this template, feel free to adapt the code (MIT-licensed) to your needs, or check Github issue #link("https://github.com/TGM-HIT/typst-diploma-thesis/issues/6")[Github issue \#6] if there is any movement in making this template more general.
 
 
 = Module reference

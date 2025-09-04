@@ -4,7 +4,7 @@ This is a port of the [LaTeX diploma thesis template](https://github.com/TGM-HIT
 
 ## Getting Started
 
-Using the Typst web app, you can create a project by e.g. using this link: https://typst.app/?template=tgm-hit-thesis&version=latest.
+Using the Typst web app, you can create a project by e.g. using the "Create new project in app" button on the package's [Universe page](https://typst.app/universe/package/tgm-hit-thesis).
 
 To work locally, use the following command:
 
