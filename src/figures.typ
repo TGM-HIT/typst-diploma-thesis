@@ -97,7 +97,7 @@
   /// -> content
   listings: none,
 ) = {
-  import "libs.typ": outrageous
+  import "outline.typ": align-fill
 
   assert.ne(figures, none, message: "List of figures title not set")
   assert.ne(tables, none, message: "List of tables title not set")
@@ -109,9 +109,8 @@
     (raw, listings),
   )
 
-  show outline.entry: outrageous.show-entry.with(
-    ..outrageous.presets.outrageous-figures,
-  )
+  show outline.entry: align-fill()
+  set outline.entry(fill: repeat(gap: 6pt, justify: false)[.])
 
   for (kind, title) in kinds {
     context if query(figure.where(kind: kind)).len() != 0 {
