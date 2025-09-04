@@ -26,11 +26,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
+## [0.4.0] - 2025-09-04
+
+### Added
+- Better tests to make sure the template doesn't break
+
+### Changed
+- BREAKING: Minimum Typst version is now 0.13
+- Remove suggested thesis structure in favor of meaningless example chapters to not nudge students into a suboptimal outline
+- Replace TGM logo with an SVG
+- Better modularization of internal package functionality
+- Removed outrageous and i-figured packages now that their functionalities are easier to achieve
+- Updated other dependencies
+  - BREAKING: glossarium no longer supports keys containing `:` colons
+
+### Fixed
+- Fixed warnings by updating codly and datify
+
+### Security
+
 ## [0.3.1] - 2025-04-08
 
 ### Fixed
-- figure outlines are not styled like the main outline anymore
-- the bibliography is now outlined correctly
+- Figure outlines are not styled like the main outline anymore
+- The bibliography is now outlined correctly
 
 ## [0.3.0] - 2025-03-13
 
@@ -101,7 +120,8 @@ A (German) prose explanation of the usage of prompts can be found in the [Exampl
 Initial Release
 
 
-[Unreleased]: https://github.com/TGM-HIT/typst-diploma-thesis/compare/v0.3.1...HEAD
+[Unreleased]: https://github.com/TGM-HIT/typst-diploma-thesis/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/TGM-HIT/typst-diploma-thesis/releases/tag/v0.4.0
 [0.3.1]: https://github.com/TGM-HIT/typst-diploma-thesis/releases/tag/v0.3.1
 [0.3.0]: https://github.com/TGM-HIT/typst-diploma-thesis/releases/tag/v0.3.0
 [0.2.0]: https://github.com/TGM-HIT/typst-diploma-thesis/releases/tag/v0.2.0
