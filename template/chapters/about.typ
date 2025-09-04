@@ -5,11 +5,13 @@
   link(..args)
 }
 
-= Vorwort <preface>
+= Über diese Vorlage <about>
 
-Die Diplomarbeit ist kein Aufsatz! Auch wenn sie interessant gestaltet werden sollte, ist sie unpersönlich und im passiv zu schreiben. Besonders sind die Quellenangaben, welche entsprechend gewählt und referenziert werden müssen. Innerhalb dieser Vorlage existieren zwei Dateien, die zu genau diesem Zweck erstellt wurden. Die Datei `bibliography.bib` beinhaltet alle Quellenangaben und verwendete Literatur, `glossaries.typ` alle Definitionen von Begriffen und Akronymen, welche in der Arbeit selbst nicht genauer erklärt werden.
+Dieses Kapitel enthält Informationen zur Verwendung dieser Vorlage. Es ist natürlich zur Gänze zu entfernen. Die Informationen hier umfassen neben vorlagenspezifischen Beispielen auch solche, die sich auf Funktionen von Typst oder #highlighted-link("https://typst.app/universe/")[zur Verfügung stehenden Paketen] beziehen und für die Erstellung von Diplomarbeiten nützlich sein können. Es lohnt sich einen Blick in `chapters/about.typ` zu werfen um zu sehen, wie die Beispiele umgesetzt wurden.
 
-Während der Großteil dieser Vorlage nur die Struktur einer typischen Diplomarbeit vorzeigt enthält das Vorwort Informationen zur Verwendung der Vorlage. Es ist natürlich zur Gänze zu ersetzen. Die Informationen hier umfassen neben vorlagenspezifischen Beispielen auch solche, die sich auf Funktionen von Typst oder #highlighted-link("https://typst.app/universe/")[zur Verfügung stehenden Paketen] beziehen und für die Erstellung von Diplomarbeiten nützlich sein können. Es lohnt sich einen Blick in `chapters/vorwort.typ` zu werfen um zu sehen, wie die Beispiele umgesetzt wurden.
+Die Diplomarbeit ist kein Aufsatz! Auch wenn sie interessant gestaltet werden sollte, ist sie unpersönlich und im passiv zu schreiben. Besonders wichtig sind die Quellenangaben, welche entsprechend gewählt und referenziert werden müssen. Innerhalb dieser Vorlage existieren zwei Dateien, die zu genau diesem Zweck erstellt wurden. Die Datei `bibliography.bib` beinhaltet alle Quellenangaben und verwendete Literatur, `glossaries.typ` alle Definitionen von Begriffen und Akronymen, welche in der Arbeit selbst nicht genauer erklärt werden.
+
+Abgesehen vom Grundaufbau mit Kurzfassung/Abstract am Anfang sowie Quellen- und anderen Verzeichnissen am Schluss hängt die Gliederung von der Arbeit sowie der Aufteilung der Inhalte zwischen den Autor:innen ab. Diese muss also individuell gewählt und mit den jeweiligen Betreuer:innen abgestimmt werden.
 
 == Quellen
 
@@ -39,14 +41,14 @@ In `bibliography.bib` ist die referenzierte Quelle folgendermaßen definiert:
   caption: [Eintrag einer Buchquelle in BibTeX],
 )
 
-Als allererstes sieht man die ID dieser Quelle, `physik1`, damit lässt sich diese entweder mit ```typ @cite:physik1``` referenzieren. Der Prefix ```typ @cite:``` ist durch _Alexandria_ bedingt; gewöhnliche Zitate würden keinen Prefix verwenden: ```typ @physik1```. Eine zusätzliche Detailangabe wie etwa für die Seitenzahl ist mit ```typ @cite:physik1[S. 145]``` möglich. Besonders bei direkten Zitaten empfiehlt es sich auch die Seitenzahl anzugeben.
+Als allererstes sieht man die ID dieser Quelle, `physik1`, somit lässt sich diese mit ```typ @cite:physik1``` referenzieren. Der Prefix ```typ @cite:``` ist durch _Alexandria_ bedingt. Eine zusätzliche Detailangabe wie etwa für die Seitenzahl ist mit ```typ @cite:physik1[S. 145]``` möglich. Besonders bei direkten Zitaten empfiehlt es sich auch die Seitenzahl anzugeben.
 
 
 In Fließtext ist es manchmal gewünscht, eine Quelle nicht mit der Nummer im @bibliography anzugeben. Die Angabe der Autoren über dem Zitat wurde zum Beispiel mit ```typ #cite(<cite:physik1>, form: "author")``` generiert.
 
-Für direkte Zitate ist die ```typ #quote()```-Funktion geeignet. Das Zitat oben ist ein Block-Zitat; im Fließtext könnte ein Zitat so ausschauen: #quote(attribution: [@cite:physik1[S. 145]])[Mechanische Longitudinalwellen werden als Schall bezeichnet.]
+Für direkte Zitate gibt es die ```typ #quote()```-Funktion. Das Zitat oben ist ein Block-Zitat; im Fließtext könnte ein Zitat so aussehen: #quote(attribution: [@cite:physik1[S. 145]])[Mechanische Longitudinalwellen werden als Schall bezeichnet.]
 
-Nach der Verwendung einer Quelle wird diese auch im @bibliography gelistet, welche sich am Ende des Dokuments befindet. Quellen die nicht referenziert werden, werden nicht angezeigt. Es ist also unproblematisch, großzügig Quellen in `bibliography.bib` aufzunehmen: besser mehr Literatur parat zu haben, als sie dann nachträglich suchen zu müssen.
+Nach der Verwendung einer Quelle wird diese auch im @bibliography gelistet, welches sich am Ende des Dokuments befindet. Quellen die nicht referenziert werden, werden nicht angezeigt. Es ist also unproblematisch, großzügig Quellen in `bibliography.bib` aufzunehmen: besser mehr Literatur parat zu haben, als sie dann nachträglich suchen zu müssen.
 
 Relevante Dokumentation:
 
@@ -74,7 +76,7 @@ Für Diplomarbeiten ist in Österreich ein separates @prompts vorgeschrieben: we
 
 Entscheidend ist der Referenztyp `@misc` und der Titel, der mit `PROMPT` beginnt. Das Referenzieren passiert mit ```typ @cite:prompt1```: @cite:prompt1 Wie man sieht ist dieses Zitat von der gleichen Form wie ein normales, allerdings führt die Verlinkung auf das separate @prompts.
 
-Anzumerken ist, dass Zitierregeln für KI-Prompts noch wenig verbreitet sind; @lst:bib-prompt zeigt nur eine Möglichkeit den BibTeX-Eintrag zu strukturieren, wobei die konkret verwendete Technologie im Titel verpackt wird. Eine andere Variante ist denkbar, solange diese dann konsistent eingesetzt wird.
+Anzumerken ist, dass Zitierregeln für KI-Prompts noch wenig verbreitet sind; @lst:bib-prompt zeigt nur eine Möglichkeit den BibTeX-Eintrag zu strukturieren, wobei die konkret verwendete Technologie im Titel verpackt wird. Eine andere Variante ist denkbar, solange diese dann konsistent eingesetzt wird. Es ist empfehlenswert, die Vorgangsweise mit dem bzw. der Betreuer:in abzustimmen.
 
 == Glossar
 
@@ -93,7 +95,7 @@ Das @glossary enthält Erklärungen von Begriffen und Abkürzen, die im Fließte
 
 Verwendet werden kann dieser Glossareintrag ähnlich einer Quellenangabe durch ```typ @tgm```. Bei der ersten Verwendung wird die Langform automatisch auch dargestellt: @tgm. Bei weiteren Verwendungen wird dagegen nur die Kurzform angezeigt: @tgm.
 
-Das für die Glossar-Funktion im Hintergrund verwendete _Glossarium_-Paket stellt auch weitere Funktionen zur Verfügung, die z.B. bei der Anpassung an die deutschen Fälle hilfreich sein können. Außerdem kann so die Langform erzwungen werden: _diese Diplomarbeit wurde im #gls("tgm", display: "Technologischen Gewerbemuseum") erstellt; "#gls("tgm", long: true)" wird man im Fließtext aufgrund der Struktur der deutschen Sprache wahrscheinlich selten finden._
+Das für die Glossar-Funktion im Hintergrund verwendete _Glossarium_-Paket stellt auch weitere Funktionen zur Verfügung, die z.B. bei der Anpassung an die deutschen Fälle hilfreich sein können. Außerdem kann so die Langform erzwungen werden: _diese Diplomarbeit wurde im #gls("tgm", display: "Technologischen Gewerbemuseum") erstellt; "@tgm:long" wird man im Fließtext aufgrund der Struktur der deutschen Sprache wahrscheinlich selten finden._
 
 Relevante Dokumentation:
 
@@ -103,7 +105,7 @@ Relevante Dokumentation:
 
 == Autorenschaft innerhalb des Dokuments
 
-Innerhalb der Diplomarbeit ist es notwendig, dass die Individuelle Autorenschaft der einzelnen Teile nachvollzogen werden kann. Üblich ist dafür, dass die Autoren in der Fußzeile angegeben werden. In dieser Vorlage kann aus zwei Modi gewählt werden: ```typc current-authors: "highlight"``` zeigt alle Autoren in der Fußzeile an, druckt aber die aktuellen Autoren fett; ```typc current-authors: "only"``` zeigt nur die aktuellen Autoren in der Fußzeile an.
+Innerhalb der Diplomarbeit ist es notwendig, dass die individuelle Autorenschaft der einzelnen Teile nachvollzogen werden kann. Üblich ist dafür, dass die Autoren in der Fußzeile angegeben werden. In dieser Vorlage kann aus zwei Modi gewählt werden: ```typc current-authors: "highlight"``` zeigt alle Autoren in der Fußzeile an, druckt aber die aktuellen Autoren fett; ```typc current-authors: "only"``` zeigt nur die aktuellen Autoren in der Fußzeile an.
 
 Vor diesem Abschnitt wurden die Autoren auf _Arthur Dent_ und _Tricia McMillan_ gesetzt (siehe den Quellcode dieses Kapitels), deshalb sind diese ab dieser Seite fett gedruckt.
 
@@ -140,9 +142,9 @@ Abbildungen, Tabellen, Codestücke und ähnlich eigenständige Inhalte werden of
 
 Es ist in wissenschaftlichen Arbeiten auch üblich, Abbildungen zur besseren Seitennutzung zu verschieben -- normalerweise an den oberen oder unteren Rand einer Seite. In Typst kann dazu ```typc figure(.., placement: auto)``` benutzt werden. Die Abbildungen in diesem Abschnitt benutzen diese Funktionalität: obwohl dieser Absatz im Quelltext nach den Abbildungen kommt, wird er vor ihnen angezeigt. Ob die Ergebnisse der automatischen Platzierung zufriedenstellend sind sollte für die Endversion natürlich nochmal manuell geprüft werden.
 
-Mathematische Gleichungen werden gemäß den Konventionen ein bisschen anders dargestellt und haben in Typst außerdem eine eigene Syntax. Die Definition von @eqt:pythagoras kann im Quelltext des Vorworts eingesehen werden:
+Mathematische Gleichungen werden gemäß den Konventionen ein bisschen anders dargestellt und haben in Typst außerdem eine eigene Syntax. Die Definition von @eqt:gauss kann im Quelltext dieses Kapitels eingesehen werden:
 
-$ a^2 + b^2 = c^2 $ <eqt:pythagoras>
+$ integral_(-infinity)^infinity e^(-x^2) dif x = sqrt(pi) $ <eqt:gauss>
 
 Relevante Dokumentation:
 
@@ -154,9 +156,10 @@ Relevante Dokumentation:
 
 == Interne Verweise <internal-references>
 
-Neben Referenzen auf Quellen, Abbildungen und Glossar-Einträge kann die ```typ @key```-Syntax auch verwendet werden, um auf Kapitel und Abschnitte zu referenzieren. Da dieses Kapitel mit dem Label ```typ <preface>``` versehen ist lässt sich zum Beispiel mit ```typ @preface``` leicht ein Verweis einfügen: @preface. Gleichermaßen funktioniert ein Verweis auf @internal-references, in dem dieser Text steht. Im PDF sind auch diese Verweise Links.
+Neben Referenzen auf Quellen, Abbildungen und Glossar-Einträge kann die ```typ @key```-Syntax auch verwendet werden, um auf Kapitel und Abschnitte zu referenzieren. Da dieses Kapitel mit dem Label ```typ <about>``` versehen ist lässt sich zum Beispiel mit ```typ @about``` leicht ein Verweis einfügen: @about. Gleichermaßen funktioniert ein Verweis auf @internal-references, in dem dieser Text steht. Im PDF sind auch diese Verweise Links.
 
 Einige Teile der Diplomarbeit sind durch die Vorlage mit Labels versehen und können damit wenn nötig referenziert werden:
+
 - @declaration
 - #text(lang: "de")[@abstract-de]
 - #text(lang: "en")[@abstract-en]
@@ -167,4 +170,5 @@ Einige Teile der Diplomarbeit sind durch die Vorlage mit Labels versehen und kö
 - @list-of-tables
 - @list-of-listings
 - @glossary
+
 Da diese Überschriften keine Nummerierung haben, werden Referenzen zu ihnen mit dem vollen Namen dargestellt.
