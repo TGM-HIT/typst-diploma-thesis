@@ -17,6 +17,10 @@ doc:
     typst compile "$f"; \
   done
 
+  for f in $(find poster -maxdepth 2 -name 'example.typ'); do \
+    typst compile "$f"; \
+  done
+
 # run test suite
 test *args:
   tt run {{ args }}
