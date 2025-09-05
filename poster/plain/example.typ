@@ -1,19 +1,35 @@
+#import "../poster.typ": poster
+
+#set text(font: "Liberation Sans")
+
+#show: poster(
+  title: [Knowdrift -- ein ewig laaaanger Diplomarbeitstitel],
+  authors: (
+    [Ferris Bartak],
+    [Sarah Breit],
+    [Manuel Kisser],
+    [Julia Pöschl],
+  ),
+  supervisors: (
+    [Mag. Erhard List BSc.],
+    [Mag. Lisa Vittori BSc.],
+  ),
+  partners: (
+    [Festo Didactic GmbH],
+    [Practical Robotics Institute Austria],
+  ),
+)
+
+#set text(28pt)
+
 #import "mod.typ" as plain: *
 
-#let heading-1-2 = selector.or(..(1, 2).map(level => heading.where(level: level)))
+#show: plain-poster()
 
-#show heading-1-2: set align(center)
-#show heading-1-2: set block(width: 100%, fill: rgb("#1e417a"))
-#show heading-1-2: set text(white, top-edge: "ascender", bottom-edge: "descender")
-#show heading.where(level: 1): set block(below: 2cm, outset: 5mm)
-#show heading.where(level: 1): set text(70pt)
-#show heading.where(level: 2): set block(below: 1.5cm, outset: 3mm)
-#show heading.where(level: 2): set text(42pt)
-
-// = Super Important Research About Complex Stuff
+= Super Important Research About Complex Stuff
 
 #vs(
-  rows: (50fr, 35fr, 15fr),
+  rows: (40fr, 40fr, 20fr),
   hs(
     columns: 3,
     [
@@ -44,10 +60,15 @@
   [
     == Big Center Block
 
-    #columns(
-      2, gutter: 1em,
-      lorem(240),
-    )
+    #columns(2, gutter: 1em)[
+      #lorem(60)
+
+      #lorem(50)
+
+      #lorem(80)
+
+      #lorem(80)
+    ]
   ],
   hs(
     columns: 3,

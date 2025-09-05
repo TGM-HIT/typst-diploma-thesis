@@ -38,3 +38,17 @@
     ..children,
   )
 }
+
+#let plain-poster(fill: rgb("#1e417a")) = body => {
+  let heading-1-2 = selector.or(..(1, 2).map(level => heading.where(level: level)))
+
+  show heading-1-2: set align(center)
+  show heading-1-2: set block(width: 100%, fill: fill)
+  show heading-1-2: set text(white, top-edge: "ascender", bottom-edge: "descender")
+  show heading.where(level: 1): set block(below: 2cm, outset: 5mm)
+  show heading.where(level: 1): set text(70pt)
+  show heading.where(level: 2): set block(below: 1.5cm, outset: 3mm)
+  show heading.where(level: 2): set text(42pt)
+
+  body
+}
