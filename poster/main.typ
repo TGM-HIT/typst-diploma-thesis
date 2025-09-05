@@ -25,5 +25,5 @@
 #set text(28pt)
 
 // #include "litfass/example.typ"
-#include "plain/example.typ"
-
+// #include "plain/example.typ"
+#include "peace-of-poster/example.typ"
