@@ -23,3 +23,5 @@
 )
 
 #set text(28pt)
+
+#include "litfass/example.typ"
