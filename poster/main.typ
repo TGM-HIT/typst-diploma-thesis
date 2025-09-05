@@ -19,9 +19,11 @@
     [Practical Robotics Institute Austria],
   ),
 
-  margin: 0pt
+  // margin: 0pt
 )
 
 #set text(28pt)
 
-#include "litfass/example.typ"
+// #include "litfass/example.typ"
+#include "plain/example.typ"
+
