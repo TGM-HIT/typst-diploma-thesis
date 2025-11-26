@@ -3,7 +3,14 @@
 
 #let _glossary_entries = state("thesis-glossary-entries")
 
-#let register-glossary(..entries) = {
+/// Registers the passed entries with Glossarium.
+///
+/// -> content
+#let register-glossary(
+  /// The positional-only entries for the glossary
+  /// -> arguments
+  ..entries,
+) = {
   assert.eq(entries.named(), (:), message: "no named arguments allowed")
   let entries = entries.pos()
   glossarium.register-glossary(entries)
@@ -13,7 +20,7 @@
 /// Stores a glossary entry for this thesis. One call to this function is equivalent to one array
 /// entry in Glossarium's ```typc print-glossary()```'s main parameter.
 ///
-/// -> content
+/// -> dictionary
 #let glossary-entry(
   /// The key with which the glossary entry can be referenced; must be unique.
   /// -> string

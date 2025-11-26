@@ -43,8 +43,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Fixed warnings by updating codly and datify
 
-### Security
-
 ## [0.3.1] - 2025-04-08
 
 ### Fixed
@@ -73,7 +71,7 @@ A (German) prose explanation of the usage of prompts can be found in the [Exampl
 
 ### Changed
 - BREAKING: in `glossary-entry()`, the `desc` parameter is now named `description`
-- for glossary entries, having only a `long` form is not permitted
+- for glossary entries, having only a `long` form is now permitted
 - bibliography is now handled by Alexandria
 - inline quotes with attribution now display that attribution
 
@@ -85,8 +83,6 @@ A (German) prose explanation of the usage of prompts can be found in the [Exampl
 - the template is now compatible with Typst 0.13
 - descriptions of glossary items are no longer ignored
 - an empty glossary is now automatically hidden
-
-### Security
 
 ## [0.2.0] - 2024-10-23
 
