@@ -195,8 +195,9 @@
     margin: (x: 1in, y: 1.5in),
     header-ascent: 15%,
     footer-descent: 15%,
-    header: context {
-      if structure.is-chapter-page() {
+    header: {
+      anchor()
+      context if structure.is-chapter-page() {
         // no header
       } else {
         hydra(
@@ -222,11 +223,10 @@
             line(length: 100%)
           },
         )
-        anchor()
       }
     },
-    footer: context {
-      if structure.is-chapter-page() {
+    footer: {
+      context if structure.is-chapter-page() {
         align(center)[
           #counter(page).display("1")
         ]
