@@ -4,4 +4,4 @@
 #import "@preview/datify:0.1.4"
 #import "@preview/glossarium:0.5.9"
 #import "@preview/hydra:0.6.2"
-#import "@preview/linguify:0.4.2"
+#import "@preview/linguify:0.5.0"
