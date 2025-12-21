@@ -52,7 +52,7 @@ Nach der Verwendung einer Quelle wird diese auch im @bibliography gelistet, welc
 
 Relevante Dokumentation:
 
-- #highlighted-link("https://typst.app/universe/package/alexandria/0.2.0/")[das Alexandria-Paket] -- wird statt dem eingebauten Literaturverzeichnis verwendet
+- #highlighted-link("https://typst.app/universe/package/alexandria/0.2.2/")[das Alexandria-Paket] -- wird statt dem eingebauten Literaturverzeichnis verwendet
 - #highlighted-link("https://typst.app/docs/reference/model/bibliography/")[```typc bibliography()```] -- das eingebaute Literaturverzeichnis
 - #highlighted-link("https://typst.app/docs/reference/model/cite/")[```typ @key``` bzw. ```typc cite()```]
 - #highlighted-link("https://typst.app/docs/reference/model/quote/")[```typc quote()```]
@@ -80,7 +80,7 @@ Anzumerken ist, dass Zitierregeln für KI-Prompts noch wenig verbreitet sind; @l
 
 == Glossar
 
-Das @glossary enthält Erklärungen von Begriffen und Abkürzen, die im Fließtext keinen Platz haben. Dadurch wird sichergestellt, dass der Lesefluss für Fachkundige nicht gestört wird, die Arbeit aber trotzdem auch für ein breiteres Publikum zugänglich ist. In der Datei `glossaries.typ` werden Begriffe -- oder in diesem Fall eine Abkürzung -- in der folgenden Form definiert:
+Das @glossary enthält Erklärungen von Begriffen und Abkürzungen, die im Fließtext keinen Platz haben. Dadurch wird sichergestellt, dass der Lesefluss für Fachkundige nicht gestört wird, die Arbeit aber trotzdem auch für ein breiteres Publikum zugänglich ist. In der Datei `glossaries.typ` werden Begriffe -- oder in diesem Fall eine Abkürzung -- in der folgenden Form definiert:
 
 #figure(
   ```typ
