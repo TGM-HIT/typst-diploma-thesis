@@ -170,15 +170,15 @@
 
     // footer
     let date-formats = (
-      "en": "Month DD, YYYY",
-      "de": "DD. Month YYYY",
+      "en": "MMMM dd, yyyy",
+      "de": "dd. MMMM yyyy",
     )
 
     line(length: 100%)
     [
       #l10n.submission-note: \
       #context if text.lang in date-formats {
-        datify.custom-date-format(date, date-formats.at(text.lang))
+        datify.custom-date-format(date, pattern: date-formats.at(text.lang), lang: text.lang)
       } else {
         date.display()
       }

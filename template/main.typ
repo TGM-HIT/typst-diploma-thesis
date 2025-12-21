@@ -15,7 +15,7 @@
   // as necessary
   supervisor-label: [Betreuer:in],
   supervisor: [DSc MSc Deep Thought],
-  date: datetime(year: 2018, month: 4, day: 4),
+  date: datetime(year: 2018, month: 3, day: 4),
   year: [2017/18],
   division: [Medientechnik, Systemtechnik],
   logo: assets.logo(width: 3cm),
