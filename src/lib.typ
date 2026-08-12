@@ -1,5 +1,4 @@
 #import "assets.typ"
-#import "bib.typ" as bib: bibliography
 #import "glossary.typ" as glossary: register-glossary, glossary-entry, gls, glspl
 #import "l10n.typ"
 
@@ -37,13 +36,12 @@
   /// The image (```typc image()```) to use as the document's logo on the title page.
   /// -> content
   logo: none,
-  /// pass ```typc path => read(path)``` into this parameter so that Alexandria can read your
-  /// bibliography files.
-  /// -> function
-  read: none,
-  /// The (Alexandria) bibliography (```typc bibliography()```) to use for the thesis.
+  /// The bibliography (```typc bibliography()```) to use for the thesis.
   /// -> content
   bibliography: none,
+  /// The list of prompts (```typc bibliography()```) to use for the thesis.
+  /// -> content
+  prompts: none,
 
   /// The language in which the thesis is written. `"de"` and `"en"` are supported. The choice of language influences certain texts on the title page and in headings, as well as the date format used on the title page.
   /// -> string
@@ -85,9 +83,6 @@
 
   // setup glossarium
   show: glossary.make-glossary
-
-  // setup Alexandria
-  show: bib.alexandria.alexandria(prefix: "cite:", read: read)
 
   // figure numbering
   show: figures.numbering()
@@ -287,34 +282,17 @@
     glossary.print-glossary(title: [= #l10n.glossary <glossary>])
 
     if bibliography != none {
+      set std.bibliography(title: none)
+
+      [= #l10n.bibliography <bibliography>]
       bibliography
+    }
 
-      let is-prompt(x) = {
-        if x.details.type != "misc" { return false }
+    if prompts != none {
+      set std.bibliography(title: none)
 
-        let title = x.details.title
-        if type(title) == dictionary {
-          title = title.value
-        }
-
-        title.starts-with("PROMPT")
-      }
-
-      context {
-        let (references, ..rest) = bib.alexandria.get-bibliography(auto)
-        let prompts = references.filter(x => is-prompt(x))
-        let references = references.filter(x => not is-prompt(x))
-
-        if references.len() != 0 {
-          [= #l10n.bibliography <bibliography>]
-          bib.alexandria.render-bibliography(title: none, (references: references, ..rest))
-        }
-
-        if prompts.len() != 0 {
-          [= #l10n.prompts <prompts>]
-          bib.alexandria.render-bibliography(title: none, (references: prompts, ..rest))
-        }
-      }
+      [= #l10n.prompts <prompts>]
+      prompts
     }
   }
 

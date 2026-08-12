@@ -9,17 +9,17 @@
 
 Dieses Kapitel enthält Informationen zur Verwendung dieser Vorlage. Es ist natürlich zur Gänze zu entfernen. Die Informationen hier umfassen neben vorlagenspezifischen Beispielen auch solche, die sich auf Funktionen von Typst oder #highlighted-link("https://typst.app/universe/")[zur Verfügung stehenden Paketen] beziehen und für die Erstellung von Diplomarbeiten nützlich sein können. Es lohnt sich einen Blick in `chapters/about.typ` zu werfen um zu sehen, wie die Beispiele umgesetzt wurden.
 
-Die Diplomarbeit ist kein Aufsatz! Auch wenn sie interessant gestaltet werden sollte, ist sie unpersönlich und im passiv zu schreiben. Besonders wichtig sind die Quellenangaben, welche entsprechend gewählt und referenziert werden müssen. Innerhalb dieser Vorlage existieren zwei Dateien, die zu genau diesem Zweck erstellt wurden. Die Datei `bibliography.bib` beinhaltet alle Quellenangaben und verwendete Literatur, `glossaries.typ` alle Definitionen von Begriffen und Akronymen, welche in der Arbeit selbst nicht genauer erklärt werden.
+Die Diplomarbeit ist kein Aufsatz! Auch wenn sie interessant gestaltet werden sollte, ist sie unpersönlich und im passiv zu schreiben. Besonders wichtig sind die Quellenangaben, welche entsprechend gewählt und referenziert werden müssen. Innerhalb dieser Vorlage existieren drei Dateien, die zu genau diesem Zweck erstellt wurden. Die Datei `bibliography.bib` beinhaltet alle Quellenangaben und verwendete Literatur, `glossaries.typ` alle Definitionen von Begriffen und Akronymen, welche in der Arbeit selbst nicht genauer erklärt werden, `prompts.bib` alle KI-Prompts, die bei der Erstellung benutzt wurden.
 
 Abgesehen vom Grundaufbau mit Kurzfassung/Abstract am Anfang sowie Quellen- und anderen Verzeichnissen am Schluss hängt die Gliederung von der Arbeit sowie der Aufteilung der Inhalte zwischen den Autor:innen ab. Diese muss also individuell gewählt und mit den jeweiligen Betreuer:innen abgestimmt werden.
 
 == Quellen
 
-Das richtige zitieren spielt innerhalb der wissenschaftlichen Arbeit eine wichtige Rolle. Die Verwaltung von Literatur ist bereits in Typst enthalten, allerdings wird zur Unterstützung des Promptverzeichnisses (siehe @about:prompts) das externe Paket _Alexandria_ für Quellen verwendet; die Benutzung ist aber großteils ident. Die Datei `bibliography.bib` ist bereits vorgegeben, es kann aber wie in der Dokumentation beschrieben auch das _Hayagriva_-Format verwendet werden.
+Das richtige zitieren spielt innerhalb der wissenschaftlichen Arbeit eine wichtige Rolle. Die Verwaltung von Literatur ist bereits in Typst enthalten. Die Dateien `bibliography.bib` und `prompts.bib` sind bereits vorgegeben, es kann aber wie in der Dokumentation beschrieben auch das _Hayagriva_-Format verwendet werden.
 
-Als kleines Beispiel findet sich hier nun ein Zitat über Schall, aus dem ersten Physik Lehrbuch der Autoren #cite(<cite:physik1>, form: "author").
+Als kleines Beispiel findet sich hier nun ein Zitat über Schall, aus dem ersten Physik Lehrbuch der Autoren #cite(<physik1>, form: "author").
 
-#quote(attribution: [@cite:physik1[S. 145]], block: true)[
+#quote(attribution: [@physik1[S. 145]], block: true)[
   "Mechanische Longitudinalwellen werden als Schall bezeichnet. In einem Frequenzbereich von 16 Hz bis 20 kHz sind sie für das menschliche Ohr wahrnehmbar. Liegen die Frequenzen unter diesem Bereich, so bezeichnet man diese Wellen als Infraschall, darüber als Ultraschall."
 ]
 
@@ -41,18 +41,17 @@ In `bibliography.bib` ist die referenzierte Quelle folgendermaßen definiert:
   caption: [Eintrag einer Buchquelle in BibTeX],
 )
 
-Als allererstes sieht man die ID dieser Quelle, `physik1`, somit lässt sich diese mit ```typ @cite:physik1``` referenzieren. Der Prefix ```typ @cite:``` ist durch _Alexandria_ bedingt. Eine zusätzliche Detailangabe wie etwa für die Seitenzahl ist mit ```typ @cite:physik1[S. 145]``` möglich. Besonders bei direkten Zitaten empfiehlt es sich auch die Seitenzahl anzugeben.
+Als allererstes sieht man die ID dieser Quelle, `physik1`, somit lässt sich diese mit ```typ @physik1``` referenzieren. Eine zusätzliche Detailangabe wie etwa für die Seitenzahl ist mit ```typ @physik1[S. 145]``` möglich. Besonders bei direkten Zitaten empfiehlt es sich auch die Seitenzahl anzugeben.
 
 
-In Fließtext ist es manchmal gewünscht, eine Quelle nicht mit der Nummer im @bibliography anzugeben. Die Angabe der Autoren über dem Zitat wurde zum Beispiel mit ```typ #cite(<cite:physik1>, form: "author")``` generiert.
+In Fließtext ist es manchmal gewünscht, eine Quelle nicht mit der Nummer im @bibliography anzugeben. Die Angabe der Autoren über dem Zitat wurde zum Beispiel mit ```typ #cite(<physik1>, form: "author")``` generiert.
 
-Für direkte Zitate gibt es die ```typ #quote()```-Funktion. Das Zitat oben ist ein Block-Zitat; im Fließtext könnte ein Zitat so aussehen: #quote(attribution: [@cite:physik1[S. 145]])[Mechanische Longitudinalwellen werden als Schall bezeichnet.]
+Für direkte Zitate gibt es die ```typ #quote()```-Funktion. Das Zitat oben ist ein Block-Zitat; im Fließtext könnte ein Zitat so aussehen: #quote(attribution: [@physik1[S. 145]])[Mechanische Longitudinalwellen werden als Schall bezeichnet.]
 
 Nach der Verwendung einer Quelle wird diese auch im @bibliography gelistet, welches sich am Ende des Dokuments befindet. Quellen die nicht referenziert werden, werden nicht angezeigt. Es ist also unproblematisch, großzügig Quellen in `bibliography.bib` aufzunehmen: besser mehr Literatur parat zu haben, als sie dann nachträglich suchen zu müssen.
 
 Relevante Dokumentation:
 
-- #highlighted-link("https://typst.app/universe/package/alexandria/0.2.2/")[das Alexandria-Paket] -- wird statt dem eingebauten Literaturverzeichnis verwendet
 - #highlighted-link("https://typst.app/docs/reference/model/bibliography/")[```typc bibliography()```] -- das eingebaute Literaturverzeichnis
 - #highlighted-link("https://typst.app/docs/reference/model/cite/")[```typ @key``` bzw. ```typc cite()```]
 - #highlighted-link("https://typst.app/docs/reference/model/quote/")[```typc quote()```]
@@ -61,12 +60,12 @@ Relevante Dokumentation:
 
 == Promptverzeichnis <about:prompts>
 
-Für Diplomarbeiten ist in Österreich ein separates @prompts vorgeschrieben: wenn in der Arbeit KI zur Erstellung von Inhalten verwendet wurde, müssen die dazu eingesetzten Prompts in einem _separaten_ Promptverzeichnis aufgeführt werden. Diese Vorlage ist so eingerichtet, dass die Prompts ebenfalls in der Datei `bibliography.bib` aufgeführt werden, zum Beispiel folgendermaßen:
+Für Diplomarbeiten ist in Österreich ein separates @prompts vorgeschrieben: wenn in der Arbeit KI zur Erstellung von Inhalten verwendet wurde, müssen die dazu eingesetzten Prompts in einem _separaten_ Promptverzeichnis aufgeführt werden. Diese Vorlage ist so eingerichtet, dass die Prompts in der Datei `prompts.bib` aufgeführt werden, zum Beispiel folgendermaßen:
 
 #figure(
   ```bib
   @misc{ prompt1,
-    title = {PROMPT, ChatGPT 4o-mini. Formuliere in sachlicher und neutraler Sprache eine Definition des Begriffs Zitierregeln},
+    title = {ChatGPT 4o-mini. Formuliere in sachlicher und neutraler Sprache eine Definition des Begriffs Zitierregeln},
     author = {OpenAI},
     date = {2025-03-12},
   }
@@ -74,7 +73,7 @@ Für Diplomarbeiten ist in Österreich ein separates @prompts vorgeschrieben: we
   caption: [Eintrag eines Prompts für diese Vorlage im BibTeX-Format],
 ) <lst:bib-prompt>
 
-Entscheidend ist der Referenztyp `@misc` und der Titel, der mit `PROMPT` beginnt. Das Referenzieren passiert mit ```typ @cite:prompt1```: @cite:prompt1 Wie man sieht ist dieses Zitat von der gleichen Form wie ein normales, allerdings führt die Verlinkung auf das separate @prompts.
+Das Referenzieren passiert genauso mit ```typ @prompt1```: @prompt1 Wie man sieht ist dieses Zitat von der gleichen Form wie ein normales, allerdings führt die Verlinkung auf das separate @prompts.
 
 Anzumerken ist, dass Zitierregeln für KI-Prompts noch wenig verbreitet sind; @lst:bib-prompt zeigt nur eine Möglichkeit den BibTeX-Eintrag zu strukturieren, wobei die konkret verwendete Technologie im Titel verpackt wird. Eine andere Variante ist denkbar, solange diese dann konsistent eingesetzt wird. Es ist empfehlenswert, die Vorgangsweise mit dem bzw. der Betreuer:in abzustimmen.
 
@@ -140,7 +139,7 @@ Abbildungen, Tabellen, Codestücke und ähnlich eigenständige Inhalte werden of
   caption: [Arten von Abbildungen und empfohlene Präfixe],
 ) <tbl:figure-kinds>
 
-Es ist in wissenschaftlichen Arbeiten auch üblich, Abbildungen zur besseren Seitennutzung zu verschieben -- normalerweise an den oberen oder unteren Rand einer Seite. In Typst kann dazu ```typc figure(.., placement: auto)``` benutzt werden. Die Abbildungen in diesem Abschnitt benutzen diese Funktionalität: obwohl dieser Absatz im Quelltext nach den Abbildungen kommt, wird er vor ihnen angezeigt. Ob die Ergebnisse der automatischen Platzierung zufriedenstellend sind sollte für die Endversion natürlich nochmal manuell geprüft werden.
+Es ist in wissenschaftlichen Arbeiten auch üblich, Abbildungen zur besseren Seitennutzung zu verschieben -- normalerweise an den oberen oder unteren Rand einer Seite. In Typst kann dazu ```typc figure(.., placement: auto)``` benutzt werden. Die Abbildungen in diesem Abschnitt benutzen diese Funktionalität: obwohl dieser Absatz im Quelltext nach den Abbildungen kommt, beginnt er vor ihnen, auf der vorherigen Seite. Ob die Ergebnisse der automatischen Platzierung zufriedenstellend sind sollte für die Endversion natürlich nochmal manuell geprüft werden.
 
 Mathematische Gleichungen werden gemäß den Konventionen ein bisschen anders dargestellt und haben in Typst außerdem eine eigene Syntax. Die Definition von @eqt:gauss kann im Quelltext dieses Kapitels eingesehen werden:
 
