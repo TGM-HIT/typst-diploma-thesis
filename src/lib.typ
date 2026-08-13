@@ -36,11 +36,11 @@
   /// The image (```typc image()```) to use as the document's logo on the title page.
   /// -> content
   logo: none,
-  /// The bibliography (```typc bibliography()```) to use for the thesis.
-  /// -> content
+  /// The bibliography (```typc path``` or a ```typc bibliography()``` element) to use for the thesis.
+  /// -> path | content
   bibliography: none,
-  /// The list of prompts (```typc bibliography()```) to use for the thesis.
-  /// -> content
+  /// The list of prompts (```typc path``` or a ```typc bibliography()``` element) to use for the thesis.
+  /// -> path | content
   prompts: none,
 
   /// The language in which the thesis is written. `"de"` and `"en"` are supported. The choice of language influences certain texts on the title page and in headings, as well as the date format used on the title page.
@@ -57,10 +57,14 @@
   import hydra: hydra, anchor
 
   import "authors.typ" as _authors
+  import "bib.typ"
   import "figures.typ"
   import "structure.typ"
 
   _authors.check-current-authors(current-authors)
+
+  let bibliography = bib.coerce-bibliography(bibliography)
+  let prompts = bib.coerce-bibliography(prompts)
 
   // basic document & typesetting setup
   set document(

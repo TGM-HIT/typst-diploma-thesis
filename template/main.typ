@@ -19,8 +19,8 @@
   year: [2017/18],
   division: [Medientechnik, Systemtechnik],
   logo: assets.logo(width: 3cm),
-  bibliography: bibliography("bibliography.bib"),
-  prompts: bibliography("prompts.bib"),
+  bibliography: path("bibliography.bib"),
+  prompts: path("prompts.bib"),
 
   // language: "en",
   // current-authors: "only",
