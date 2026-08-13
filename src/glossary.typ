@@ -1,4 +1,4 @@
-#import "libs.typ": glossarium
+#import "deps.typ": glossarium
 #import glossarium: make-glossary, gls, agls, glspl
 
 #let _glossary_entries = state("thesis-glossary-entries")

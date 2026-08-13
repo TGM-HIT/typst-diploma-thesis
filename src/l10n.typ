@@ -1,4 +1,4 @@
-#import "libs.typ": linguify.set-database as _set_database, linguify.linguify
+#import "deps.typ": linguify.set-database as _set_database, linguify.linguify
 
 /// *Internal function.* Initializes Linguify with the template's translation file.
 ///

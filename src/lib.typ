@@ -53,7 +53,7 @@
   /// -> string
   paper: "a4",
 ) = body => {
-  import "libs.typ": *
+  import "deps.typ": *
   import hydra: hydra, anchor
 
   import "authors.typ" as _authors

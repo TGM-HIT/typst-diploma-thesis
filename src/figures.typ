@@ -42,7 +42,7 @@
   /// -> content
   supplement: none,
 ) = body => {
-  import "libs.typ": codly.codly-init
+  import "deps.typ": codly.codly-init
 
   assert.ne(supplement, none, message: "Listing supplement not set")
 
