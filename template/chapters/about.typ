@@ -217,3 +217,34 @@ Einige Teile der Diplomarbeit sind durch die Vorlage mit Labels versehen und kö
 - @glossary
 
 Da diese Überschriften keine Nummerierung haben, werden Referenzen zu ihnen mit dem vollen Namen dargestellt.
+
+== Unterstützung erhalten <support>
+
+#block(sticky: true)[
+  Für diesen Abschnitt wechsle ich bewusst in die persönliche Form.
+  Die Informationen in diesem Kapitel sind ein Startpunkt zur Erstellung einer Diplomarbeit, aber sicher lässt sie Fragen offen.
+  Zum Glück gibt es einige Wege und Anlaufstellen, wo du Hilfestellungen finden kannst:
+]
+
+- Für einen allgemeinen Einstieg in Typst gibt es die Typst-Dokumentation.
+  Das #highlighted-link("https://typst.app/docs/tutorial/")[Tutorial] behandelt grundlegend das Schreiben und Gestalten -- wobei die Vorlage beim Gestalten schon einiges vorgibt.
+  Die #highlighted-link("https://typst.app/docs/reference/")[Referenz] beinhaltet die API-Dokumentation und listet somit alle verfügbaren Funktionen und Optionen auf.
+
+- Bei konkreten Problemen mit Typst sind der #highlighted-link("https://discord.gg/2uDybryKPe")[Discord-Server] und das #highlighted-link("https://forum.typst.app/")[Forum] die primären Anlaufstellen.
+  Beide sind sehr aktiv, je nach Komplexität der Fragen bekommst du hier Antworten oft in wenigen Minuten oder zumindest Stunden.
+  Beachte beim Posten bitte die jeweiligen Community- und Postingregeln.
+
+  Bei einfacheren Fragen sind natürlich auch Chatbots eine Option, obwohl manche immer noch Markdown-, LateX- und Typst-Syntax vermischen.
+
+- Fragen spezifisch zu dieser Vorlage kannst du auch auf beiden Plattformen stellen.
+  Zusätzlich ist dann ein #highlighted-link("https://github.com/TGM-HIT/typst-diploma-thesis/issues")[Github Issue] eine option -- gerade dann wenn es darum geht, vorgegebene Features der Vorlage anzupassen.
+  Sollte ein neues oder geändertes Feature notwendig sein setze ich dieses gerne um; melde das aber früh genug, damit sich Umgesetzung und Veröffentlichung vor der Diplomarbeitsabgabe ausgehen.
+  Pull Requests sind natürlich auch gerne gesehen.
+
+- Für TGM-Schüler:innen bin ich auch persönlich oder per Email erreichbar.
+  Meine Email-Adresse und mein Stundenplan sollten leicht zu finden sein.
+
+Ich hoffe, dass diese Vorlage dir und deinem Team beim Schreiben der Diplomarbeit gute Dienste leistet.
+Ich freue mich über eure Erfahrungsberichte, hoffentlich kann ich die Vorlage so noch weiter verbessern.
+
+-- Clemens Koza
