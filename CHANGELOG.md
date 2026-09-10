@@ -26,6 +26,99 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
+## [0.5.0]
+
+<details>
+<summary>Migration guide from v0.4.x</summary>
+
+First of all, make sure that you have Typst 0.15 or later installed.
+
+The biggest change in this version is in bibliography handling.
+
+#### Changed template parameters
+
+**Before:**
+```typ
+#show: thesis(
+  ..
+  read: path => read(path),
+  bibliography: bibliography("bibliography.bib"),
+  ..
+)
+```
+
+**After:**
+```typ
+#show: thesis(
+  ..
+  bibliography: bibliography("bibliography.bib"),
+  prompts: bibliography("prompts.bib"),
+  ..
+)
+```
+
+- remove the `read` parameter
+- add a `prompts` parameter
+
+#### Separate prompt bibliography
+
+**Before:**
+```bib
+% bibliograpy.bib
+
+% ... regular references ...
+
+@misc{ prompt1,
+	title = {PROMPT, ChatGPT 4o-mini. ...},
+	author = {OpenAI},
+	date = {2025-03-12},
+}
+```
+
+**After:**
+```bib
+% prompts.bib
+
+@misc{ prompt1,
+	title = {ChatGPT 4o-mini. ...},
+	author = {OpenAI},
+	date = {2025-03-12},
+}
+```
+- move prompts from `bibliography.bib` to a new `prompts.bib`
+- you no longer need the `PROMPT` prefix in the title, ask your advisor how to write prompt bibliography entries
+
+#### No prefix for citations
+
+**Before:**
+```typ
+#cite(<cite:physik1>, form: "author")
+
+@cite:physik1[S. 145]
+```
+
+**After:**
+```typ
+#cite(<physik1>, form: "author")
+
+@physik1[S. 145]
+```
+
+- remove the `cite:` prefix from all your citations, or alternatively add it to the keys in your bibliography files
+
+</details>
+
+### Changed
+- BREAKING: Minimum Typst version is now 0.15
+- Improved Hydra usage to reduce iteration count (#12)
+- Updated dependencies
+- Removed Alexandria (#13)
+  - BREAKING: Citation keys are no longer prefixed with `cite:`
+  - BREAKING: Prompts don't use the `PROMPT` name prefix anymore, but go in a separate bibliography file.
+
+### Fixed
+- Submission date is now actually localized correctly
+
 ## [0.4.0] - 2025-09-04
 
 ### Added
@@ -116,7 +209,8 @@ A (German) prose explanation of the usage of prompts can be found in the [Exampl
 Initial Release
 
 
-[Unreleased]: https://github.com/TGM-HIT/typst-diploma-thesis/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/TGM-HIT/typst-diploma-thesis/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/TGM-HIT/typst-diploma-thesis/releases/tag/v0.5.0
 [0.4.0]: https://github.com/TGM-HIT/typst-diploma-thesis/releases/tag/v0.4.0
 [0.3.1]: https://github.com/TGM-HIT/typst-diploma-thesis/releases/tag/v0.3.1
 [0.3.0]: https://github.com/TGM-HIT/typst-diploma-thesis/releases/tag/v0.3.0

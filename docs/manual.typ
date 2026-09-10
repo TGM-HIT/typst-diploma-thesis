@@ -5,7 +5,7 @@
   package-meta: toml("/typst.toml").package,
   title: "TGM HIT diploma thesis template",
   // subtitle: "...",
-  date: datetime(year: 2025, month: 9, day: 4),
+  date: datetime(year: 2026, month: 9, day: 10),
 
   // logo: rect(width: 5cm, height: 5cm),
   // abstract: [
